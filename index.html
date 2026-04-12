@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Pulser One — AI Coach Built for You</title>
+<meta name="description" content="The AI fitness coach built for Android — real-time movement analysis, body scan, injury prevention. Free forever with premium upgrade."/>
+<meta property="og:title" content="Pulser One — AI Coach Built for You"/>
+<meta property="og:description" content="Beat your limits. Not your budget. AI fitness coaching built Android-first for European athletes."/>
+<meta property="og:image" content="https://one.pulser.fit/og-image.png"/>
+<link rel="canonical" href="https://one.pulser.fit"/>
+
+<!-- Favicon SVG -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d1216'/%3E%3Cpath d='M48 16 Q48 32 32 32 Q16 32 16 48' stroke='%23ff3131' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Cpath d='M42 12 Q52 12 52 22' stroke='%23ff3131' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='48' cy='12' r='6' fill='%23ff3131'/%3E%3Cpath d='M16 54 Q16 58 20 58' stroke='%23ff3131' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"/>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400&display=swap');
+
+  :root {
+    --bg: #0d1216;
+    --red: #ff3131;
+    --white: #ffffff;
+    --grey: #8a9099;
+    --card: #141a20;
+    --border: #1e2830;
+    --font: 'Calibri', 'Carlito', 'Trebuchet MS', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: var(--font);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%; height: 68px;
+    background: rgba(13,18,22,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .logo svg { width: 36px; height: 36px; }
+  .logo-text { font-size: 1.25rem; font-weight: 700; color: var(--white); letter-spacing: 0.02em; }
+  .logo-text span { color: var(--red); }
+
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-links a { color: var(--grey); text-decoration: none; font-size: 0.9rem; transition: color .2s; }
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-actions { display: flex; align-items: center; gap: 12px; }
+
+  #langSelect {
+    background: transparent; border: 1px solid var(--border);
+    color: var(--grey); padding: 5px 8px; border-radius: 6px;
+    font-family: var(--font); font-size: 0.82rem; cursor: pointer;
+    appearance: none; -webkit-appearance: none;
+  }
+  #langSelect:focus { outline: none; border-color: var(--red); }
+
+  .btn { display: inline-block; text-decoration: none; cursor: pointer; border: none; font-family: var(--font); transition: all .2s; }
+  .btn-primary {
+    background: var(--red); color: var(--white);
+    padding: 10px 22px; border-radius: 8px; font-weight: 700; font-size: 0.9rem;
+  }
+  .btn-primary:hover { background: #e02020; transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent; color: var(--white);
+    padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: 0.9rem;
+    border: 1px solid var(--border);
+  }
+  .btn-outline:hover { border-color: var(--red); color: var(--red); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 100px 5% 60px;
+    position: relative; overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
+    width: 900px; height: 900px;
+    background: radial-gradient(circle, rgba(255,49,49,0.12) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,49,49,0.12); border: 1px solid rgba(255,49,49,0.3);
+    color: var(--red); padding: 6px 16px; border-radius: 100px;
+    font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 28px;
+    animation: fadeUp .6s ease both;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.4rem, 6vw, 5rem);
+    font-weight: 700; line-height: 1.1; letter-spacing: -0.02em;
+    max-width: 900px;
+    animation: fadeUp .7s ease .1s both;
+  }
+
+  .hero h1 em { color: var(--red); font-style: normal; }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--grey); max-width: 600px; margin: 20px auto 40px;
+    animation: fadeUp .7s ease .2s both;
+  }
+
+  .hero-form {
+    display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+    animation: fadeUp .7s ease .3s both;
+    max-width: 500px; width: 100%;
+  }
+
+  .hero-form input {
+    flex: 1; min-width: 220px;
+    background: var(--card); border: 1px solid var(--border);
+    color: var(--white); padding: 13px 18px; border-radius: 8px;
+    font-family: var(--font); font-size: 1rem;
+  }
+  .hero-form input::placeholder { color: var(--grey); }
+  .hero-form input:focus { outline: none; border-color: var(--red); }
+  .hero-form button {
+    background: var(--red); color: var(--white);
+    padding: 13px 24px; border-radius: 8px; font-weight: 700; font-size: 1rem;
+    border: none; cursor: pointer; white-space: nowrap; font-family: var(--font);
+    transition: background .2s, transform .2s;
+  }
+  .hero-form button:hover { background: #e02020; transform: translateY(-1px); }
+
+  .hero-fine { font-size: 0.78rem; color: var(--grey); margin-top: 14px; animation: fadeUp .7s ease .4s both; }
+
+  .hero-stats {
+    display: flex; gap: 48px; margin-top: 60px; flex-wrap: wrap; justify-content: center;
+    animation: fadeUp .7s ease .5s both;
+  }
+  .stat { text-align: center; }
+  .stat-num { font-size: 2rem; font-weight: 700; color: var(--red); display: block; }
+  .stat-label { font-size: 0.82rem; color: var(--grey); }
+
+  /* scroll indicator */
+  .scroll-hint {
+    position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    color: var(--grey); font-size: 0.75rem; animation: float 2s ease-in-out infinite;
+  }
+  .scroll-hint svg { width: 20px; height: 20px; }
+
+  /* ─── SECTIONS ─── */
+  section { padding: 90px 5%; }
+  .section-label { font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--red); font-weight: 700; margin-bottom: 14px; }
+  h2 { font-size: clamp(1.8rem, 3.5vw, 3rem); font-weight: 700; line-height: 1.2; margin-bottom: 16px; }
+  h2 em { color: var(--red); font-style: normal; }
+  .section-sub { color: var(--grey); max-width: 600px; font-size: 1.05rem; }
+
+  /* ─── FEATURES ─── */
+  .features-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px; margin-top: 56px;
+  }
+  .feat-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 16px; padding: 32px;
+    transition: border-color .25s, transform .25s;
+    position: relative; overflow: hidden;
+  }
+  .feat-card:hover { border-color: var(--red); transform: translateY(-4px); }
+  .feat-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--red); transform: scaleX(0); transform-origin: left;
+    transition: transform .3s ease;
+  }
+  .feat-card:hover::before { transform: scaleX(1); }
+
+  .feat-icon {
+    width: 52px; height: 52px; border-radius: 12px;
+    background: rgba(255,49,49,0.12); display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+  }
+  .feat-icon svg { width: 26px; height: 26px; color: var(--red); }
+  .feat-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 10px; }
+  .feat-card p { color: var(--grey); font-size: 0.92rem; line-height: 1.65; }
+  .feat-tag {
+    display: inline-block; margin-top: 14px;
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--red); background: rgba(255,49,49,0.1); padding: 3px 10px; border-radius: 100px;
+  }
+
+  /* ─── HOW IT WORKS ─── */
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px; margin-top: 56px; }
+  .step { display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+  .step-num {
+    font-size: 3rem; font-weight: 700; color: transparent;
+    -webkit-text-stroke: 2px rgba(255,49,49,0.4); line-height: 1;
+  }
+  .step h3 { font-size: 1.1rem; font-weight: 700; }
+  .step p { color: var(--grey); font-size: 0.92rem; }
+
+  /* ─── PROBLEMS ─── */
+  .problems-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 48px; }
+  .prob { background: var(--card); padding: 28px; position: relative; }
+  .prob::after { content: ''; position: absolute; inset: 0; border: 1px solid var(--border); pointer-events: none; }
+  .prob-label { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 10px; }
+  .prob-label.bad { color: #ff6b6b; }
+  .prob-label.good { color: #4caf50; }
+  .prob h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 8px; }
+  .prob p { color: var(--grey); font-size: 0.88rem; }
+
+  /* ─── PRICING ─── */
+  .pricing-toggle {
+    display: flex; align-items: center; gap: 14px; margin-bottom: 48px;
+    justify-content: center;
+  }
+  .pricing-toggle span { color: var(--grey); font-size: 0.9rem; }
+  .pricing-toggle span.active { color: var(--white); font-weight: 700; }
+  .toggle-btn {
+    width: 52px; height: 28px; border-radius: 14px;
+    background: var(--card); border: 1px solid var(--border);
+    position: relative; cursor: pointer;
+  }
+  .toggle-thumb {
+    position: absolute; top: 3px; left: 3px;
+    width: 20px; height: 20px; border-radius: 50%; background: var(--red);
+    transition: transform .25s;
+  }
+  .toggle-btn.yearly .toggle-thumb { transform: translateX(24px); }
+  .save-badge {
+    background: rgba(76,175,80,0.15); color: #4caf50;
+    border: 1px solid rgba(76,175,80,0.3);
+    padding: 2px 10px; border-radius: 100px; font-size: 0.75rem; font-weight: 700;
+  }
+
+  .pricing-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; max-width: 800px; margin: 0 auto; }
+  .price-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; padding: 36px;
+  }
+  .price-card.featured { border-color: var(--red); position: relative; }
+  .price-card.featured::before {
+    content: attr(data-badge);
+    position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+    background: var(--red); color: var(--white);
+    padding: 3px 16px; border-radius: 100px; font-size: 0.78rem; font-weight: 700;
+    white-space: nowrap;
+  }
+  .price-name { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--grey); margin-bottom: 16px; }
+  .price-amount { margin-bottom: 6px; }
+  .price-num { font-size: 3rem; font-weight: 700; }
+  .price-period { color: var(--grey); font-size: 0.9rem; }
+  .price-desc { color: var(--grey); font-size: 0.88rem; margin-bottom: 28px; }
+  .price-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+  .price-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.9rem; }
+  .price-features li::before { content: '✓'; color: var(--red); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .price-features li.dim::before { content: '–'; color: var(--grey); }
+  .price-features li.dim { color: var(--grey); }
+  .price-cta {
+    width: 100%; padding: 13px; border-radius: 10px; font-size: 1rem; font-weight: 700;
+    cursor: pointer; border: none; font-family: var(--font); transition: all .2s;
+  }
+  .price-cta.primary { background: var(--red); color: var(--white); }
+  .price-cta.primary:hover { background: #e02020; }
+  .price-cta.secondary { background: transparent; color: var(--white); border: 1px solid var(--border); }
+  .price-cta.secondary:hover { border-color: var(--white); }
+
+  /* ─── PROOF / MARKET ─── */
+  .proof-strip {
+    background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    padding: 48px 5%;
+  }
+  .proof-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 32px; text-align: center; }
+  .proof-num { font-size: 2.2rem; font-weight: 700; color: var(--red); display: block; }
+  .proof-label { font-size: 0.85rem; color: var(--grey); line-height: 1.4; }
+
+  /* ─── CROWDFUNDING CTA ─── */
+  .crowd-section {
+    background: linear-gradient(135deg, rgba(255,49,49,0.08) 0%, transparent 60%);
+    border-top: 1px solid var(--border);
+    text-align: center; padding: 90px 5%;
+  }
+  .crowd-section h2 { margin-bottom: 16px; }
+  .crowd-section p { color: var(--grey); max-width: 540px; margin: 0 auto 36px; font-size: 1.05rem; }
+  .crowd-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--red); color: var(--white);
+    padding: 16px 36px; border-radius: 10px; font-weight: 700; font-size: 1.1rem;
+    text-decoration: none; border: none; cursor: pointer; font-family: var(--font);
+    transition: all .2s;
+  }
+  .crowd-btn:hover { background: #e02020; transform: translateY(-2px); }
+  .crowd-btn.disabled {
+    background: var(--card); border: 1px solid var(--border);
+    color: var(--grey); cursor: default;
+  }
+  .crowd-btn.disabled:hover { transform: none; }
+  .crowd-note { font-size: 0.82rem; color: var(--grey); margin-top: 14px; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--card); border-top: 1px solid var(--border);
+    padding: 56px 5% 32px;
+  }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+  .footer-brand p { color: var(--grey); font-size: 0.88rem; margin: 14px 0 24px; max-width: 280px; line-height: 1.65; }
+  .footer-social { display: flex; gap: 12px; flex-wrap: wrap; }
+  .social-btn {
+    width: 38px; height: 38px; border-radius: 8px;
+    background: var(--bg); border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--grey); transition: all .2s; text-decoration: none;
+  }
+  .social-btn:hover { border-color: var(--red); color: var(--red); }
+  .social-btn svg { width: 16px; height: 16px; }
+  .footer-col h4 { font-size: 0.82rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--grey); margin-bottom: 18px; }
+  .footer-col a { display: block; color: var(--grey); text-decoration: none; font-size: 0.9rem; margin-bottom: 10px; transition: color .2s; }
+  .footer-col a:hover { color: var(--white); }
+  .footer-bottom { border-top: 1px solid var(--border); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: gap; gap: 12px; }
+  .footer-bottom p { color: var(--grey); font-size: 0.82rem; }
+  .footer-bottom a { color: var(--grey); text-decoration: none; font-size: 0.82rem; }
+  .footer-bottom a:hover { color: var(--white); }
+
+  /* ─── MODAL ─── */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(4px); z-index: 200;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity .25s;
+  }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 20px; padding: 40px; max-width: 480px; width: 90%;
+    transform: translateY(16px); transition: transform .25s;
+    position: relative;
+  }
+  .modal-overlay.open .modal { transform: translateY(0); }
+  .modal-close {
+    position: absolute; top: 16px; right: 16px;
+    background: none; border: none; color: var(--grey);
+    cursor: pointer; font-size: 1.4rem; line-height: 1;
+  }
+  .modal h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; }
+  .modal p { color: var(--grey); font-size: 0.92rem; margin-bottom: 24px; }
+  .modal input, .modal select {
+    width: 100%; background: var(--bg); border: 1px solid var(--border);
+    color: var(--white); padding: 12px 16px; border-radius: 8px;
+    font-family: var(--font); font-size: 0.95rem; margin-bottom: 12px;
+  }
+  .modal input:focus, .modal select:focus { outline: none; border-color: var(--red); }
+  .modal select { appearance: none; -webkit-appearance: none; }
+  .modal button[type=submit] {
+    width: 100%; padding: 13px; border-radius: 8px;
+    background: var(--red); color: var(--white);
+    font-size: 1rem; font-weight: 700; border: none; cursor: pointer;
+    font-family: var(--font); transition: background .2s;
+  }
+  .modal button[type=submit]:hover { background: #e02020; }
+  .success-msg { text-align: center; padding: 24px 0; }
+  .success-msg .checkmark { font-size: 3rem; margin-bottom: 12px; }
+  .success-msg h4 { font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; }
+  .success-msg p { color: var(--grey); }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes float { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-6px); } }
+
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .problems-grid { grid-template-columns: 1fr; }
+    .pricing-cards { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .footer-top { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav>
+  <a href="/" class="logo">
+    <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+      <rect width="64" height="64" rx="10" fill="#0d1216"/>
+      <path d="M48 16 Q48 33 32 33 Q16 33 16 48" stroke="#ff3131" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+      <path d="M43 11 Q53 11 53 21" stroke="#ff3131" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <circle cx="48" cy="12" r="6" fill="#ff3131"/>
+      <path d="M16 53 Q16 57 20 57" stroke="#ff3131" stroke-width="3" fill="none" stroke-linecap="round"/>
+    </svg>
+    <span class="logo-text">Pulser <span>One</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="#features" data-t="nav_features">Features</a>
+    <a href="#how" data-t="nav_how">How it works</a>
+    <a href="#pricing" data-t="nav_pricing">Pricing</a>
+    <a href="mailto:go@pulser.fit" data-t="nav_contact">Contact</a>
+  </div>
+  <div class="nav-actions">
+    <select id="langSelect" title="Language" onchange="setLang(this.value)">
+      <option value="en">🇬🇧 EN</option>
+      <option value="de">🇩🇪 DE</option>
+      <option value="fr">🇫🇷 FR</option>
+      <option value="es">🇪🇸 ES</option>
+      <option value="it">🇮🇹 IT</option>
+      <option value="pl">🇵🇱 PL</option>
+      <option value="pt">🇵🇹 PT</option>
+      <option value="nl">🇳🇱 NL</option>
+      <option value="sv">🇸🇪 SV</option>
+      <option value="ro">🇷🇴 RO</option>
+      <option value="zh">🇨🇳 中文</option>
+      <option value="ja">🇯🇵 日本語</option>
+      <option value="ko">🇰🇷 한국어</option>
+      <option value="id">🇮🇩 ID</option>
+      <option value="hi">🇮🇳 हिन्दी</option>
+      <option value="th">🇹🇭 ไทย</option>
+      <option value="vi">🇻🇳 VI</option>
+    </select>
+    <button class="btn btn-primary" onclick="openModal()" data-t="nav_cta">Join Waitlist</button>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero" id="hero">
+  <div class="hero-badge" data-t="hero_badge">🤖 AI Coach · Android-First · Free Forever</div>
+  <h1 data-t="hero_h1">Your coach never <em>quits.</em></h1>
+  <p class="hero-sub" data-t="hero_sub">Real-time AI movement analysis, 360° body scan & injury prevention — built Android-first for the 67% of Europeans who deserve better than an afterthought.</p>
+  <div class="hero-form">
+    <input type="email" id="heroEmail" placeholder="your@email.com" data-t-placeholder="email_placeholder"/>
+    <button onclick="submitHero()" data-t="hero_cta">Get Early Access</button>
+  </div>
+  <p class="hero-fine" data-t="hero_fine">Free forever. No credit card. Cancel anytime.</p>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-num">67%</span><span class="stat-label" data-t="stat1">of EU users on Android</span></div>
+    <div class="stat"><span class="stat-num">3.9★</span><span class="stat-label" data-t="stat2">Zing Coach on Play Store</span></div>
+    <div class="stat"><span class="stat-num">€0</span><span class="stat-label" data-t="stat3">to start, always</span></div>
+  </div>
+  <div class="scroll-hint">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14m-7-7l7 7 7-7"/></svg>
+    <span data-t="scroll">Scroll</span>
+  </div>
+</section>
+
+<!-- ─── PROOF STRIP ─── -->
+<div class="proof-strip reveal">
+  <div class="proof-grid">
+    <div><span class="proof-num">33</span><span class="proof-label" data-t="proof1">landmark body points tracked in real time</span></div>
+    <div><span class="proof-num">80+</span><span class="proof-label" data-t="proof2">exercises in launch library</span></div>
+    <div><span class="proof-num">4-view</span><span class="proof-label" data-t="proof3">360° body scan on any camera</span></div>
+    <div><span class="proof-num">0</span><span class="proof-label" data-t="proof4">data leaves your device during analysis</span></div>
+    <div><span class="proof-num">500+</span><span class="proof-label" data-t="proof5">devices via Health Connect integration</span></div>
+  </div>
+</div>
+
+<!-- ─── FEATURES ─── -->
+<section id="features">
+  <div class="reveal">
+    <p class="section-label" data-t="feat_label">Core Features</p>
+    <h2 data-t="feat_h2">Everything your coach<br/>would charge you for. <em>Free.</em></h2>
+    <p class="section-sub" data-t="feat_sub">Built from scratch with AI in the core — not bolted on as a marketing tagline.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feat-card reveal">
+      <div class="feat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="3"/><path d="M6 21v-2a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2"/><path d="M12 3v2M12 19v2M4 12H2M22 12h-2"/></svg>
+      </div>
+      <h3 data-t="f1_h">Live Movement AI</h3>
+      <p data-t="f1_p">MediaPipe tracks 33 body keypoints at 30fps — no cloud, no lag. Real joint angles, bilateral symmetry, form score per rep.</p>
+      <span class="feat-tag" data-t="f1_tag">Camera · On-device</span>
+    </div>
+    <div class="feat-card reveal">
+      <div class="feat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 3h18v18H3z"/><path d="M9 9l6 6M15 9l-6 6"/></svg>
+      </div>
+      <h3 data-t="f2_h">360° Body Scan</h3>
+      <p data-t="f2_p">Rotate once. Get body shape, frame size, composition estimate, posture flags, and a training plan built for your actual proportions.</p>
+      <span class="feat-tag" data-t="f2_tag">Front · Side · Back · Left</span>
+    </div>
+    <div class="feat-card reveal">
+      <div class="feat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3 6 12H2"/></svg>
+      </div>
+      <h3 data-t="f3_h">Injury Prevention</h3>
+      <p data-t="f3_p">Biomechanical risk scoring from joint data + Health Connect (HRV, sleep, resting HR) combined into a 0–100 risk score with zone breakdown.</p>
+      <span class="feat-tag" data-t="f3_tag">AI · Health Connect</span>
+    </div>
+    <div class="feat-card reveal">
+      <div class="feat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+      </div>
+      <h3 data-t="f4_h">Health Connect Deep Integration</h3>
+      <p data-t="f4_p">Reads Fitbit, Samsung Health, Garmin, Pixel Watch — all through one API. 500+ connected devices. Zing Coach doesn't have this.</p>
+      <span class="feat-tag" data-t="f4_tag">Android 14+ · 500 devices</span>
+    </div>
+    <div class="feat-card reveal">
+      <div class="feat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20h20M4 20V10l8-6 8 6v10"/></svg>
+      </div>
+      <h3 data-t="f5_h">Smart Programming</h3>
+      <p data-t="f5_p">Your workout plan updates based on your body scan result, movement history, and Health Connect data. No questionnaire guessing.</p>
+      <span class="feat-tag" data-t="f5_tag">Adaptive · Personalised</span>
+    </div>
+    <div class="feat-card reveal">
+      <div class="feat-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7L2 9l7-1z"/></svg>
+      </div>
+      <h3 data-t="f6_h">Progress & Analytics</h3>
+      <p data-t="f6_p">Per-exercise form trend, joint accuracy pills, personal bests. Everything you need to see you're actually getting better.</p>
+      <span class="feat-tag" data-t="f6_tag">Charts · History · PRs</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── HOW IT WORKS ─── -->
+<section id="how" style="background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="reveal">
+    <p class="section-label" data-t="how_label">How It Works</p>
+    <h2 data-t="how_h2">Zero setup. <em>Live in 60 seconds.</em></h2>
+  </div>
+  <div class="steps">
+    <div class="step reveal">
+      <div class="step-num">01</div>
+      <h3 data-t="s1_h">Download free</h3>
+      <p data-t="s1_p">Install from Google Play or the App Store. No account required to start your first session.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">02</div>
+      <h3 data-t="s2_h">Body scan once</h3>
+      <p data-t="s2_p">Rotate 360° in front of your camera. AI measures your proportions and builds your baseline in under 2 minutes.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">03</div>
+      <h3 data-t="s3_h">Train with AI eyes</h3>
+      <p data-t="s3_p">Select an exercise. The AI skeleton overlays on your camera, counts reps, scores form, warns before injury.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">04</div>
+      <h3 data-t="s4_h">Adapt & improve</h3>
+      <p data-t="s4_p">Your program updates automatically based on performance data, health metrics, and recovery signals.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── VS COMPETITION ─── -->
+<section>
+  <div class="reveal">
+    <p class="section-label" data-t="vs_label">Why Switch</p>
+    <h2 data-t="vs_h2">Built for Android users.<br/>Not as an <em>afterthought.</em></h2>
+  </div>
+  <div class="problems-grid reveal" style="margin-top: 48px;">
+    <div class="prob">
+      <div class="prob-label bad" data-t="others">Others</div>
+      <h3 data-t="vs1_h">Glitchy Android apps</h3>
+      <p data-t="vs1_p">3.9★ on Play Store. Videos that don't load, weights that don't increase, workouts that crash mid-session.</p>
+    </div>
+    <div class="prob">
+      <div class="prob-label good" data-t="us">Pulser One</div>
+      <h3 data-t="vs1b_h">Android-first architecture</h3>
+      <p data-t="vs1b_p">Built natively on Android. Health Connect integration from day one. Camera AI optimised for mid-range hardware.</p>
+    </div>
+    <div class="prob">
+      <div class="prob-label bad" data-t="others">Others</div>
+      <h3 data-t="vs2_h">Body scan = paid add-on</h3>
+      <p data-t="vs2_p">Charged for features after signup. Impossible cancellation. Users billed months after they cancelled.</p>
+    </div>
+    <div class="prob">
+      <div class="prob-label good" data-t="us">Pulser One</div>
+      <h3 data-t="vs2b_h">Body scan always free</h3>
+      <p data-t="vs2b_p">1 scan per week on free tier, unlimited on Premium. Cancel in 2 taps. No hidden charges. Ever.</p>
+    </div>
+    <div class="prob">
+      <div class="prob-label bad" data-t="others">Others</div>
+      <h3 data-t="vs3_h">Apple Health only</h3>
+      <p data-t="vs3_p">Only reads Apple Watch. Android users lose their Garmin, Fitbit, Samsung Health data entirely.</p>
+    </div>
+    <div class="prob">
+      <div class="prob-label good" data-t="us">Pulser One</div>
+      <h3 data-t="vs3b_h">500+ devices via Health Connect</h3>
+      <p data-t="vs3b_p">Every wearable that supports Android Health Connect automatically feeds into your injury risk model.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PRICING ─── -->
+<section id="pricing" style="background: var(--card); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);">
+  <div class="reveal" style="text-align:center; margin-bottom: 0;">
+    <p class="section-label" data-t="price_label">Pricing</p>
+    <h2 data-t="price_h2">Simple. Transparent. <em>No surprises.</em></h2>
+    <p class="section-sub" style="margin: 0 auto 36px;" data-t="price_sub">The free tier is genuinely useful — not a crippled trial.</p>
+  </div>
+  <div class="pricing-toggle">
+    <span class="active" id="lblMonthly" data-t="monthly">Monthly</span>
+    <div class="toggle-btn" id="billingToggle" onclick="toggleBilling()"><div class="toggle-thumb"></div></div>
+    <span id="lblYearly" data-t="yearly">Yearly</span>
+    <span class="save-badge" data-t="save_pct">Save 50%</span>
+  </div>
+  <div class="pricing-cards">
+    <div class="price-card">
+      <div class="price-name" data-t="plan_free">Free</div>
+      <div class="price-amount">
+        <span class="price-num" data-t="free_price">€0</span>
+        <span class="price-period" data-t="forever">/ forever</span>
+      </div>
+      <p class="price-desc" data-t="free_desc">Everything you need to get started. No trial period.</p>
+      <ul class="price-features">
+        <li data-t="pf1">Live AI form tracking</li>
+        <li data-t="pf2">Rep counting + feedback</li>
+        <li data-t="pf3">Body scan (1×/week)</li>
+        <li data-t="pf4">Health Connect (read)</li>
+        <li data-t="pf5">Progress history (30 days)</li>
+        <li class="dim" data-t="pf6">Unlimited body scans</li>
+        <li class="dim" data-t="pf7">Full exercise library</li>
+        <li class="dim" data-t="pf8">Injury risk report</li>
+      </ul>
+      <button class="price-cta secondary" onclick="openModal()" data-t="free_cta">Get Early Access</button>
+    </div>
+    <div class="price-card featured" data-badge="Most Popular">
+      <div class="price-name" data-t="plan_pro">Premium</div>
+      <div class="price-amount">
+        <span class="price-num" id="proPrice">€9.99</span>
+        <span class="price-period" id="proPeriod" data-t="per_month">/ month</span>
+      </div>
+      <p class="price-desc" id="proNote" data-t="pro_desc">Billed monthly. Cancel anytime in 2 taps.</p>
+      <ul class="price-features">
+        <li data-t="pp1">Everything in Free</li>
+        <li data-t="pp2">Unlimited body scans</li>
+        <li data-t="pp3">Full exercise library (80+)</li>
+        <li data-t="pp4">Injury risk reports</li>
+        <li data-t="pp5">AI adaptive programming</li>
+        <li data-t="pp6">Unlimited progress history</li>
+        <li data-t="pp7">Health Connect (read + write)</li>
+        <li data-t="pp8">Priority support</li>
+      </ul>
+      <button class="price-cta primary" onclick="openModal()" data-t="pro_cta">Join Waitlist</button>
+    </div>
+  </div>
+  <p style="text-align:center; color: var(--grey); font-size: 0.82rem; margin-top: 24px;" data-t="price_note">Prices shown in local currency where available. VAT may apply.</p>
+</section>
+
+<!-- ─── CROWDFUNDING CTA ─── -->
+<section class="crowd-section" id="crowdfund">
+  <div class="reveal">
+    <p class="section-label" data-t="crowd_label">Support the Mission</p>
+    <h2 data-t="crowd_h2">Back us on <em>Kickstarter</em></h2>
+    <p data-t="crowd_p">We're crowdfunding Pulser One to ship the first truly Android-native AI fitness coach. Backers get lifetime premium access. Campaign launching soon.</p>
+    <a href="#" class="crowd-btn disabled" id="crowdBtn" data-t="crowd_btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 21 12 17.77 5.82 21 7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <span data-t="crowd_btn_text">Coming Soon — Notify Me</span>
+    </a>
+    <p class="crowd-note" data-t="crowd_note">Early backers get lifetime Premium at a one-time founder price.</p>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="/" class="logo" style="text-decoration:none; display:flex; align-items:center; gap:10px;">
+        <svg viewBox="0 0 64 64" width="32" height="32" xmlns="http://www.w3.org/2000/svg">
+          <rect width="64" height="64" rx="10" fill="#0d1216"/>
+          <path d="M48 16 Q48 33 32 33 Q16 33 16 48" stroke="#ff3131" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+          <circle cx="48" cy="12" r="6" fill="#ff3131"/>
+          <path d="M16 53 Q16 57 20 57" stroke="#ff3131" stroke-width="3" fill="none" stroke-linecap="round"/>
+        </svg>
+        <span class="logo-text">Pulser <span>One</span></span>
+      </a>
+      <p data-t="footer_desc">The AI fitness coach built for Android-first Europeans. Real movement tracking, real data, real results.</p>
+      <div class="footer-social">
+        <!-- X/Twitter -->
+        <a href="https://x.com/pulserfit" class="social-btn" target="_blank" aria-label="X">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.26 5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <!-- Instagram -->
+        <a href="https://instagram.com/pulserfit" class="social-btn" target="_blank" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <!-- LinkedIn -->
+        <a href="https://linkedin.com/company/pulser-fit" class="social-btn" target="_blank" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 6a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>
+        </a>
+        <!-- Facebook -->
+        <a href="https://facebook.com/pulserfit" class="social-btn" target="_blank" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <!-- YouTube -->
+        <a href="https://youtube.com/@pulserfit" class="social-btn" target="_blank" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 0 0 1.46 6.42 29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.96A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58zM9.75 15.02V8.98L15.5 12z"/></svg>
+        </a>
+        <!-- TikTok -->
+        <a href="https://tiktok.com/@pulserfit" class="social-btn" target="_blank" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.22 8.22 0 0 0 4.8 1.54V6.78a4.85 4.85 0 0 1-1.03-.09z"/></svg>
+        </a>
+        <!-- Email -->
+        <a href="mailto:go@pulser.fit" class="social-btn" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4 data-t="fc1_title">Product</h4>
+      <a href="#features" data-t="fc1_1">Features</a>
+      <a href="#how" data-t="fc1_2">How it Works</a>
+      <a href="#pricing" data-t="fc1_3">Pricing</a>
+      <a href="#crowdfund" data-t="fc1_4">Crowdfunding</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-t="fc2_title">Company</h4>
+      <a href="mailto:go@pulser.fit" data-t="fc2_1">Contact</a>
+      <a href="mailto:go@pulser.fit?subject=Press" data-t="fc2_2">Press</a>
+      <a href="mailto:go@pulser.fit?subject=Partner" data-t="fc2_3">Partners</a>
+    </div>
+    <div class="footer-col">
+      <h4 data-t="fc3_title">Legal</h4>
+      <a href="/terms.html" data-t="fc3_1">Terms of Service</a>
+      <a href="/privacy.html" data-t="fc3_2">Privacy Policy</a>
+      <a href="mailto:go@pulser.fit?subject=GDPR" data-t="fc3_3">Data Request</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Pulser One. <span data-t="rights">All rights reserved.</span></p>
+    <div style="display:flex; gap:20px;">
+      <a href="/terms.html" data-t="footer_terms">Terms</a>
+      <a href="/privacy.html" data-t="footer_privacy">Privacy</a>
+      <a href="mailto:go@pulser.fit">go@pulser.fit</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── MODAL ─── -->
+<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <div id="modalContent">
+      <h3 data-t="modal_h">Join the Waitlist</h3>
+      <p data-t="modal_p">Be first to know when Pulser One launches. Early subscribers get 3 months Premium free.</p>
+      <input type="text" id="mName" data-t-placeholder="name_placeholder" placeholder="Your name"/>
+      <input type="email" id="mEmail" data-t-placeholder="email_placeholder" placeholder="your@email.com"/>
+      <select id="mPlatform">
+        <option value="" data-t="m_platform">Your device…</option>
+        <option value="android">Android</option>
+        <option value="ios">iOS (iPhone)</option>
+        <option value="both">Both</option>
+      </select>
+      <select id="mGoal">
+        <option value="" data-t="m_goal">Your main goal…</option>
+        <option value="strength" data-t="g_strength">Strength</option>
+        <option value="weight" data-t="g_weight">Weight loss</option>
+        <option value="injury" data-t="g_injury">Injury prevention</option>
+        <option value="general" data-t="g_general">General fitness</option>
+      </select>
+      <button type="submit" onclick="submitModal()" data-t="modal_cta">Join Waitlist →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ─── TRANSLATIONS ─── */
+const T = {
+  en: {
+    nav_features:'Features', nav_how:'How it Works', nav_pricing:'Pricing', nav_contact:'Contact', nav_cta:'Join Waitlist',
+    hero_badge:'🤖 AI Coach · Android-First · Free Forever',
+    hero_h1:'Your coach never <em>quits.</em>',
+    hero_sub:'Real-time AI movement analysis, 360° body scan & injury prevention — built Android-first for the 67% of Europeans who deserve better.',
+    hero_cta:'Get Early Access', hero_fine:'Free forever. No credit card. Cancel anytime.',
+    email_placeholder:'your@email.com',
+    stat1:'of EU users on Android', stat2:'Zing Coach on Play Store', stat3:'to start, always',
+    scroll:'Scroll',
+    proof1:'landmark body points tracked', proof2:'exercises in launch library', proof3:'360° body scan on any camera', proof4:'data leaves your device', proof5:'devices via Health Connect',
+    feat_label:'Core Features', feat_h2:'Everything your coach would charge for. <em>Free.</em>', feat_sub:'Built from scratch with AI in the core — not bolted on.',
+    f1_h:'Live Movement AI', f1_p:'MediaPipe tracks 33 body keypoints at 30fps — no cloud, no lag. Real joint angles, bilateral symmetry, form score per rep.', f1_tag:'Camera · On-device',
+    f2_h:'360° Body Scan', f2_p:'Rotate once. Get body shape, frame size, composition estimate, posture flags, and a training plan built for your proportions.', f2_tag:'Front · Side · Back · Left',
+    f3_h:'Injury Prevention', f3_p:'Biomechanical risk scoring from joint data + Health Connect (HRV, sleep, resting HR) combined into a 0–100 risk score.', f3_tag:'AI · Health Connect',
+    f4_h:'Health Connect Deep Integration', f4_p:'Reads Fitbit, Samsung Health, Garmin, Pixel Watch — all through one API. 500+ devices. Zing Coach doesn\'t have this.', f4_tag:'Android 14+ · 500 devices',
+    f5_h:'Smart Programming', f5_p:'Your workout plan updates based on body scan, movement history, and health metrics. No questionnaire guessing.', f5_tag:'Adaptive · Personalised',
+    f6_h:'Progress & Analytics', f6_p:'Per-exercise form trend, joint accuracy pills, personal bests. See you\'re actually getting better.', f6_tag:'Charts · History · PRs',
+    how_label:'How It Works', how_h2:'Zero setup. <em>Live in 60 seconds.</em>',
+    s1_h:'Download free', s1_p:'Install from Google Play or App Store. No account required to start.',
+    s2_h:'Body scan once', s2_p:'Rotate 360° in front of camera. AI measures proportions and builds your baseline in under 2 minutes.',
+    s3_h:'Train with AI eyes', s3_p:'Select an exercise. Skeleton overlays on camera, counts reps, scores form, warns before injury.',
+    s4_h:'Adapt & improve', s4_p:'Your program updates based on performance, health metrics, and recovery signals.',
+    vs_label:'Why Switch', vs_h2:'Built for Android users. Not as an <em>afterthought.</em>',
+    others:'Others', us:'Pulser One',
+    vs1_h:'Glitchy Android apps', vs1_p:'3.9★ on Play Store. Videos that don\'t load, weights that don\'t increase.',
+    vs1b_h:'Android-first architecture', vs1b_p:'Built natively on Android. Health Connect from day one.',
+    vs2_h:'Body scan = paid add-on', vs2_p:'Charged after signup. Impossible cancellation. Billed months after cancelling.',
+    vs2b_h:'Body scan always free', vs2b_p:'1 scan/week on free tier, unlimited on Premium. Cancel in 2 taps.',
+    vs3_h:'Apple Health only', vs3_p:'Only reads Apple Watch. Android users lose Garmin, Fitbit, Samsung data.',
+    vs3b_h:'500+ devices via Health Connect', vs3b_p:'Every wearable that supports Health Connect feeds into your injury risk model.',
+    price_label:'Pricing', price_h2:'Simple. Transparent. <em>No surprises.</em>', price_sub:'The free tier is genuinely useful — not a crippled trial.',
+    monthly:'Monthly', yearly:'Yearly', save_pct:'Save 50%',
+    plan_free:'Free', free_price:'€0', forever:'/ forever', free_desc:'Everything to start. No trial period.',
+    pf1:'Live AI form tracking', pf2:'Rep counting + feedback', pf3:'Body scan (1×/week)', pf4:'Health Connect (read)', pf5:'Progress history (30 days)', pf6:'Unlimited body scans', pf7:'Full exercise library', pf8:'Injury risk report',
+    free_cta:'Get Early Access',
+    plan_pro:'Premium', per_month:'/ month', pro_desc:'Billed monthly. Cancel anytime in 2 taps.',
+    pp1:'Everything in Free', pp2:'Unlimited body scans', pp3:'Full exercise library (80+)', pp4:'Injury risk reports', pp5:'AI adaptive programming', pp6:'Unlimited progress history', pp7:'Health Connect (read + write)', pp8:'Priority support',
+    pro_cta:'Join Waitlist',
+    price_note:'Prices shown in local currency. VAT may apply.',
+    crowd_label:'Support the Mission', crowd_h2:'Back us on <em>Kickstarter</em>',
+    crowd_p:'We\'re crowdfunding Pulser One to ship the first truly Android-native AI fitness coach. Backers get lifetime premium access.',
+    crowd_btn:'Coming Soon — Notify Me', crowd_note:'Early backers get lifetime Premium at a one-time founder price.',
+    footer_desc:'The AI fitness coach built Android-first for Europeans.',
+    fc1_title:'Product', fc1_1:'Features', fc1_2:'How it Works', fc1_3:'Pricing', fc1_4:'Crowdfunding',
+    fc2_title:'Company', fc2_1:'Contact', fc2_2:'Press', fc2_3:'Partners',
+    fc3_title:'Legal', fc3_1:'Terms of Service', fc3_2:'Privacy Policy', fc3_3:'Data Request',
+    rights:'All rights reserved.', footer_terms:'Terms', footer_privacy:'Privacy',
+    modal_h:'Join the Waitlist', modal_p:'Be first. Early subscribers get 3 months Premium free.',
+    name_placeholder:'Your name', m_platform:'Your device…', m_goal:'Your main goal…',
+    g_strength:'Strength', g_weight:'Weight loss', g_injury:'Injury prevention', g_general:'General fitness',
+    modal_cta:'Join Waitlist →',
+    success_h:'You\'re on the list!', success_p:'We\'ll email you as soon as Pulser One is ready. Share with a friend and both get an extra month free.'
+  },
+  de: {
+    nav_features:'Funktionen', nav_how:'Wie es funktioniert', nav_pricing:'Preise', nav_contact:'Kontakt', nav_cta:'Warteliste',
+    hero_badge:'🤖 KI-Coach · Android-First · Kostenlos für immer',
+    hero_h1:'Dein Coach gibt nie <em>auf.</em>',
+    hero_sub:'Echtzeit-KI-Bewegungsanalyse, 360°-Bodyscan & Verletzungsprävention — Android-first für die 67% Europäer, die Besseres verdienen.',
+    hero_cta:'Früher Zugang', hero_fine:'Kostenlos für immer. Keine Kreditkarte. Jederzeit kündigen.',
+    stat1:'der EU-Nutzer auf Android', stat2:'Zing Coach im Play Store', stat3:'zum Starten, immer',
+    scroll:'Scrollen',
+    modal_h:'Warteliste beitreten', modal_p:'Als Erster informiert werden. Frühe Abonnenten erhalten 3 Monate Premium gratis.',
+    name_placeholder:'Dein Name', m_platform:'Dein Gerät…', m_goal:'Dein Hauptziel…',
+    modal_cta:'Warteliste beitreten →',
+    success_h:'Du bist auf der Liste!', success_p:'Wir benachrichtigen dich, sobald Pulser One bereit ist.'
+  },
+  fr: {
+    nav_features:'Fonctionnalités', nav_how:'Comment ça marche', nav_pricing:'Tarifs', nav_contact:'Contact', nav_cta:'Liste d\'attente',
+    hero_badge:'🤖 Coach IA · Android d\'abord · Gratuit pour toujours',
+    hero_h1:'Ton coach ne <em>lâche jamais.</em>',
+    hero_sub:'Analyse de mouvement IA en temps réel, scan corporel 360° & prévention des blessures — conçu Android-first pour les 67% d\'Européens qui méritent mieux.',
+    hero_cta:'Accès anticipé', hero_fine:'Gratuit pour toujours. Pas de carte de crédit.',
+    stat1:'des utilisateurs EU sur Android', stat2:'Zing Coach sur Play Store', stat3:'pour commencer, toujours',
+    modal_h:'Rejoindre la liste d\'attente', modal_p:'Soyez le premier informé. Les abonnés anticipés reçoivent 3 mois Premium gratuits.',
+    name_placeholder:'Votre nom', m_platform:'Votre appareil…', m_goal:'Votre objectif principal…',
+    modal_cta:'Rejoindre la liste →',
+    success_h:'Vous êtes sur la liste !', success_p:'Nous vous contacterons dès que Pulser One sera prêt.'
+  },
+  es: {
+    nav_features:'Funciones', nav_how:'Cómo funciona', nav_pricing:'Precios', nav_contact:'Contacto', nav_cta:'Lista de espera',
+    hero_badge:'🤖 Coach IA · Android Primero · Gratis para siempre',
+    hero_h1:'Tu coach nunca <em>se rinde.</em>',
+    hero_sub:'Análisis de movimiento IA en tiempo real, escaneo corporal 360° y prevención de lesiones — Android-first para el 67% de europeos que merecen más.',
+    hero_cta:'Acceso anticipado', hero_fine:'Gratis para siempre. Sin tarjeta de crédito.',
+    modal_h:'Unirse a la lista de espera', modal_p:'Sé el primero. Los suscriptores tempranos reciben 3 meses Premium gratis.',
+    name_placeholder:'Tu nombre', modal_cta:'Unirse →',
+    success_h:'¡Estás en la lista!', success_p:'Te notificaremos cuando Pulser One esté listo.'
+  },
+  it: {
+    nav_features:'Funzionalità', nav_how:'Come funziona', nav_pricing:'Prezzi', nav_contact:'Contatti', nav_cta:'Lista d\'attesa',
+    hero_badge:'🤖 Coach IA · Android Prima · Gratis per sempre',
+    hero_h1:'Il tuo coach non <em>molla mai.</em>',
+    hero_sub:'Analisi del movimento IA in tempo reale, scansione corporea 360° e prevenzione infortuni — Android-first per il 67% degli europei.',
+    hero_cta:'Accesso anticipato', hero_fine:'Gratis per sempre. Nessuna carta di credito.',
+    modal_h:'Unisciti alla lista d\'attesa', modal_p:'Sii il primo. Gli abbonati anticipati ricevono 3 mesi Premium gratis.',
+    name_placeholder:'Il tuo nome', modal_cta:'Unisciti →',
+    success_h:'Sei in lista!', success_p:'Ti contatteremo quando Pulser One sarà pronto.'
+  },
+  pl: {
+    nav_features:'Funkcje', nav_how:'Jak to działa', nav_pricing:'Ceny', nav_contact:'Kontakt', nav_cta:'Lista oczekujących',
+    hero_badge:'🤖 Coach AI · Android-First · Zawsze darmowy',
+    hero_h1:'Twój coach nigdy <em>nie odpuszcza.</em>',
+    hero_sub:'Analiza ruchów AI w czasie rzeczywistym, skan ciała 360° i zapobieganie kontuzjom — Android-first dla 67% Europejczyków.',
+    hero_cta:'Wczesny dostęp', hero_fine:'Zawsze bezpłatny. Bez karty kredytowej.',
+    modal_h:'Dołącz do listy oczekujących', modal_p:'Bądź pierwszy. Wczesni subskrybenci otrzymują 3 miesiące Premium za darmo.',
+    name_placeholder:'Twoje imię', modal_cta:'Dołącz →',
+    success_h:'Jesteś na liście!', success_p:'Powiadomimy Cię, gdy Pulser One będzie gotowy.'
+  },
+  pt: {
+    nav_features:'Funcionalidades', nav_how:'Como funciona', nav_pricing:'Preços', nav_contact:'Contato', nav_cta:'Lista de espera',
+    hero_badge:'🤖 Coach IA · Android Primeiro · Sempre Gratuito',
+    hero_h1:'Seu coach nunca <em>desiste.</em>',
+    hero_sub:'Análise de movimento IA em tempo real, scan corporal 360° e prevenção de lesões — Android-first para os 67% de europeus.',
+    hero_cta:'Acesso antecipado', hero_fine:'Gratuito para sempre. Sem cartão de crédito.',
+    modal_h:'Entrar na lista de espera', modal_p:'Seja o primeiro. Assinantes antecipados recebem 3 meses Premium grátis.',
+    name_placeholder:'Seu nome', modal_cta:'Entrar →',
+    success_h:'Você está na lista!', success_p:'Entraremos em contato quando o Pulser One estiver pronto.'
+  },
+  nl: { nav_cta:'Wachtlijst', hero_h1:'Jouw coach geeft <em>nooit op.</em>', hero_cta:'Vroege toegang', modal_h:'Sluit je aan bij de wachtlijst', modal_cta:'Aanmelden →', success_h:'Je staat op de lijst!', success_p:'We laten het je weten als Pulser One klaar is.', name_placeholder:'Jouw naam' },
+  sv: { nav_cta:'Väntelista', hero_h1:'Din coach ger <em>aldrig upp.</em>', hero_cta:'Tidig åtkomst', modal_h:'Gå med i väntelistan', modal_cta:'Gå med →', success_h:'Du är med!', success_p:'Vi hör av oss när Pulser One är redo.', name_placeholder:'Ditt namn' },
+  ro: { nav_cta:'Listă de așteptare', hero_h1:'Antrenorul tău nu <em>renunță niciodată.</em>', hero_cta:'Acces anticipat', modal_h:'Alătură-te listei de așteptare', modal_cta:'Alătură-te →', success_h:'Ești pe listă!', success_p:'Te vom anunța când Pulser One este gata.', name_placeholder:'Numele tău' },
+  zh: {
+    nav_features:'功能', nav_how:'工作原理', nav_pricing:'定价', nav_contact:'联系我们', nav_cta:'加入等候名单',
+    hero_badge:'🤖 AI教练 · Android优先 · 永久免费',
+    hero_h1:'您的教练从不 <em>放弃。</em>',
+    hero_sub:'实时AI动作分析、360°身体扫描和伤害预防——为Android用户打造的第一款真正的AI健身教练。',
+    hero_cta:'获取早期访问权', hero_fine:'永久免费。无需信用卡。',
+    modal_h:'加入等候名单', modal_p:'成为第一个知道的人。早期用户免费获得3个月Premium。',
+    name_placeholder:'您的姓名', modal_cta:'加入 →',
+    success_h:'您已在名单上！', success_p:'Pulser One准备好后我们会通知您。'
+  },
+  ja: {
+    nav_features:'機能', nav_how:'使い方', nav_pricing:'料金', nav_contact:'お問い合わせ', nav_cta:'ウェイトリスト',
+    hero_badge:'🤖 AIコーチ · Android優先 · 永久無料',
+    hero_h1:'あなたのコーチは決して<em>諦めない。</em>',
+    hero_sub:'リアルタイムAI動作解析、360°ボディスキャン、怪我予防——Androidユーザーのために作られた本格的なAIフィットネスコーチ。',
+    hero_cta:'早期アクセスを取得', hero_fine:'永久無料。クレジットカード不要。',
+    modal_h:'ウェイトリストに参加', modal_p:'最初に知る。早期登録者は3ヶ月プレミアム無料。',
+    name_placeholder:'お名前', modal_cta:'参加する →',
+    success_h:'リストに追加されました！', success_p:'Pulser Oneの準備ができたらご連絡します。'
+  },
+  ko: {
+    nav_features:'기능', nav_how:'작동 방식', nav_pricing:'가격', nav_contact:'문의', nav_cta:'대기자 명단',
+    hero_badge:'🤖 AI 코치 · Android 우선 · 영원히 무료',
+    hero_h1:'당신의 코치는 절대 <em>포기하지 않습니다.</em>',
+    hero_sub:'실시간 AI 동작 분석, 360° 바디 스캔 & 부상 예방 — Android 사용자를 위해 만들어진 진정한 AI 피트니스 코치.',
+    hero_cta:'얼리 액세스 신청', hero_fine:'영원히 무료. 신용카드 불필요.',
+    modal_h:'대기자 명단에 참여', modal_p:'가장 먼저 알아보세요. 얼리버드 사용자는 3개월 프리미엄 무료.',
+    name_placeholder:'이름', modal_cta:'참여하기 →',
+    success_h:'명단에 추가되었습니다!', success_p:'Pulser One 준비가 완료되면 알려드리겠습니다.'
+  },
+  id: {
+    nav_features:'Fitur', nav_how:'Cara Kerja', nav_pricing:'Harga', nav_contact:'Kontak', nav_cta:'Daftar Tunggu',
+    hero_badge:'🤖 Pelatih AI · Android-First · Gratis Selamanya',
+    hero_h1:'Pelatihmu tidak pernah <em>menyerah.</em>',
+    hero_sub:'Analisis gerakan AI real-time, pemindaian tubuh 360° & pencegahan cedera — dibangun untuk pengguna Android.',
+    hero_cta:'Akses Awal', hero_fine:'Gratis selamanya. Tidak perlu kartu kredit.',
+    modal_h:'Bergabung dengan Daftar Tunggu', modal_p:'Jadilah yang pertama tahu. Pengguna awal mendapat 3 bulan Premium gratis.',
+    name_placeholder:'Nama Anda', modal_cta:'Bergabung →',
+    success_h:'Anda ada di daftar!', success_p:'Kami akan menghubungi Anda saat Pulser One siap.'
+  },
+  hi: {
+    nav_features:'विशेषताएं', nav_how:'कैसे काम करता है', nav_pricing:'मूल्य', nav_contact:'संपर्क', nav_cta:'प्रतीक्षा सूची',
+    hero_badge:'🤖 AI कोच · Android-First · हमेशा मुफ़्त',
+    hero_h1:'आपका कोच कभी <em>हार नहीं मानता।</em>',
+    hero_sub:'रियल-टाइम AI मूवमेंट एनालिसिस, 360° बॉडी स्कैन और चोट की रोकथाम — Android उपयोगकर्ताओं के लिए बनाया गया।',
+    hero_cta:'अर्ली एक्सेस', hero_fine:'हमेशा मुफ़्त। कोई क्रेडिट कार्ड नहीं।',
+    modal_h:'प्रतीक्षा सूची में शामिल हों', modal_p:'पहले जानें। शुरुआती सदस्यों को 3 महीने Premium मुफ़्त।',
+    name_placeholder:'आपका नाम', modal_cta:'शामिल हों →',
+    success_h:'आप सूची में हैं!', success_p:'Pulser One तैयार होने पर हम आपको सूचित करेंगे।'
+  },
+  th: {
+    nav_cta:'รายชื่อรอ', hero_h1:'โค้ชของคุณไม่เคย <em>ยอมแพ้</em>',
+    hero_cta:'เข้าถึงก่อนใคร', modal_h:'เข้าร่วมรายชื่อรอ', modal_cta:'เข้าร่วม →',
+    success_h:'คุณอยู่ในรายชื่อแล้ว!', success_p:'เราจะแจ้งให้คุณทราบเมื่อ Pulser One พร้อม', name_placeholder:'ชื่อของคุณ'
+  },
+  vi: {
+    nav_cta:'Danh sách chờ', hero_h1:'Huấn luyện viên của bạn không bao giờ <em>từ bỏ.</em>',
+    hero_cta:'Truy cập sớm', modal_h:'Tham gia danh sách chờ', modal_cta:'Tham gia →',
+    success_h:'Bạn đã được thêm vào danh sách!', success_p:'Chúng tôi sẽ thông báo khi Pulser One sẵn sàng.', name_placeholder:'Tên của bạn'
+  }
+};
+
+/* ─── REGIONAL PRICING ─── */
+const PRICING = {
+  // Monthly, Yearly, currency symbol, monthly year equiv
+  default: { mo: '9.99', yr: '59.99', sym: '$', moYr: '5.00' },
+  EU: { mo: '9.99', yr: '59.99', sym: '€', moYr: '5.00' },
+  GB: { mo: '8.99', yr: '54.99', sym: '£', moYr: '4.58' },
+  IN: { mo: '399', yr: '2,499', sym: '₹', moYr: '208' },
+  ID: { mo: '89,000', yr: '499,000', sym: 'Rp', moYr: '41,583' },
+  JP: { mo: '1,200', yr: '7,200', sym: '¥', moYr: '600' },
+  KR: { mo: '11,900', yr: '69,900', sym: '₩', moYr: '5,825' },
+  TH: { mo: '199', yr: '1,199', sym: '฿', moYr: '100' },
+  VN: { mo: '199,000', yr: '999,000', sym: '₫', moYr: '83,250' },
+  CN: { mo: '68', yr: '398', sym: '¥', moYr: '33' }
+};
+
+const EU_COUNTRIES = ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE','NO','CH','IS'];
+
+let currentPricing = PRICING.default;
+let isYearly = false;
+let currentLang = 'en';
+
+async function detectRegion() {
+  try {
+    const r = await fetch('https://ipapi.co/json/');
+    const d = await r.json();
+    const cc = d.country_code;
+    if (cc === 'GB') currentPricing = PRICING.GB;
+    else if (cc === 'IN') currentPricing = PRICING.IN;
+    else if (cc === 'ID') currentPricing = PRICING.ID;
+    else if (cc === 'JP') currentPricing = PRICING.JP;
+    else if (cc === 'KR') currentPricing = PRICING.KR;
+    else if (cc === 'TH') currentPricing = PRICING.TH;
+    else if (cc === 'VN') currentPricing = PRICING.VN;
+    else if (cc === 'CN') currentPricing = PRICING.CN;
+    else if (EU_COUNTRIES.includes(cc)) currentPricing = PRICING.EU;
+    else currentPricing = PRICING.default;
+    updatePricing();
+    // Language auto-detect
+    const langMap = { DE:'de', FR:'fr', ES:'es', IT:'it', PL:'pl', PT:'pt', NL:'nl', SE:'sv', RO:'ro', CN:'zh', JP:'ja', KR:'ko', ID:'id', IN:'hi', TH:'th', VN:'vi' };
+    if (langMap[cc] && !localStorage.getItem('pulser_lang')) setLang(langMap[cc]);
+  } catch(e) {}
+}
+
+function updatePricing() {
+  const p = currentPricing;
+  if (isYearly) {
+    document.getElementById('proPrice').textContent = p.sym + p.yr;
+    document.getElementById('proPeriod').textContent = '/ year';
+    document.getElementById('proNote').textContent = `≈ ${p.sym}${p.moYr}/month. Cancel anytime.`;
+  } else {
+    document.getElementById('proPrice').textContent = p.sym + p.mo;
+    document.getElementById('proPeriod').textContent = '/ month';
+    document.getElementById('proNote').textContent = 'Billed monthly. Cancel anytime in 2 taps.';
+  }
+}
+
+function toggleBilling() {
+  isYearly = !isYearly;
+  const btn = document.getElementById('billingToggle');
+  btn.classList.toggle('yearly', isYearly);
+  document.getElementById('lblMonthly').classList.toggle('active', !isYearly);
+  document.getElementById('lblYearly').classList.toggle('active', isYearly);
+  updatePricing();
+}
+
+/* ─── TRANSLATIONS ─── */
+function setLang(lang) {
+  if (!T[lang]) lang = 'en';
+  currentLang = lang;
+  localStorage.setItem('pulser_lang', lang);
+  document.getElementById('langSelect').value = lang;
+  document.documentElement.lang = lang;
+  const dict = { ...T.en, ...T[lang] };
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const key = el.getAttribute('data-t');
+    if (dict[key]) {
+      if (el.tagName === 'INPUT' || el.tagName === 'OPTION') return;
+      el.innerHTML = dict[key];
+    }
+  });
+  document.querySelectorAll('[data-t-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-t-placeholder');
+    if (dict[key]) el.placeholder = dict[key];
+  });
+  updatePricing();
+}
+
+/* ─── MODAL ─── */
+function openModal() {
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeModalOutside(e) { if (e.target === document.getElementById('modal')) closeModal(); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+/* ─── SUBMIT ─── */
+async function doSubmit(email, name, platform, goal) {
+  if (!email || !email.includes('@')) { alert('Please enter a valid email.'); return false; }
+  // Submit to formsubmit.co
+  try {
+    await fetch('https://formsubmit.co/ajax/go@pulser.fit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify({ name: name || 'Subscriber', email, platform, goal, lang: currentLang, _subject: 'New Pulser One Waitlist Signup' })
+    });
+  } catch(e) { /* silently continue — show success anyway */ }
+  return true;
+}
+
+async function submitHero() {
+  const email = document.getElementById('heroEmail').value.trim();
+  const ok = await doSubmit(email, '', '', '');
+  if (ok) {
+    document.getElementById('heroEmail').value = '';
+    showSuccess();
+    openModal(); // show full modal with success
+  }
+}
+
+async function submitModal() {
+  const email = document.getElementById('mEmail').value.trim();
+  const name = document.getElementById('mName').value.trim();
+  const platform = document.getElementById('mPlatform').value;
+  const goal = document.getElementById('mGoal').value;
+  const ok = await doSubmit(email, name, platform, goal);
+  if (ok) showModalSuccess();
+}
+
+function showSuccess() {}
+
+function showModalSuccess() {
+  const dict = { ...T.en, ...T[currentLang] };
+  document.getElementById('modalContent').innerHTML = `
+    <div class="success-msg">
+      <div class="checkmark">🎉</div>
+      <h4>${dict.success_h || "You're on the list!"}</h4>
+      <p>${dict.success_p || "We'll let you know when Pulser One is ready."}</p>
+      <button onclick="closeModal()" style="margin-top:20px;padding:10px 24px;background:var(--red);color:#fff;border:none;border-radius:8px;font-weight:700;font-size:1rem;cursor:pointer;font-family:var(--font)">Close</button>
+    </div>`;
+}
+
+/* ─── SCROLL REVEAL ─── */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+/* ─── INIT ─── */
+window.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('pulser_lang');
+  if (saved) setLang(saved);
+  else {
+    const bl = navigator.language.slice(0,2).toLowerCase();
+    const map = { de:'de', fr:'fr', es:'es', it:'it', pl:'pl', pt:'pt', nl:'nl', sv:'sv', ro:'ro', zh:'zh', ja:'ja', ko:'ko', id:'id', hi:'hi', th:'th', vi:'vi' };
+    setLang(map[bl] || 'en');
+  }
+  detectRegion();
+});
+</script>
+</body>
+</html>
