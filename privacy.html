@@ -2,151 +2,296 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Privacy Policy — Pulser One</title>
+<meta name="description" content="Pulser One Privacy Policy — how we handle your data, camera footage, and health information."/>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230d1216'/%3E%3Cpath d='M48 16 Q48 32 32 32 Q16 32 16 48' stroke='%23ff3131' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='48' cy='12' r='6' fill='%23ff3131'/%3E%3C/svg%3E"/>
 <style>
-  :root{--bg:#0d1216;--red:#ff3131;--white:#ffffff;--grey:#8a9099;--card:#141a20;--border:#1e2830;--font:'Calibri','Carlito','Trebuchet MS',sans-serif;}
-  *{box-sizing:border-box;margin:0;padding:0;}
-  body{background:var(--bg);color:var(--white);font-family:var(--font);line-height:1.7;}
-  nav{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:64px;background:rgba(13,18,22,0.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
-  .logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--white);font-size:1.15rem;font-weight:700;}
-  .logo span{color:var(--red);}
-  .back-btn{color:var(--grey);text-decoration:none;font-size:0.88rem;display:flex;align-items:center;gap:6px;transition:color .2s;}
-  .back-btn:hover{color:var(--white);}
-  main{max-width:760px;margin:0 auto;padding:60px 5% 80px;counter-reset:sec;}
-  .doc-header{margin-bottom:48px;border-bottom:1px solid var(--border);padding-bottom:32px;}
-  .doc-header h1{font-size:2.2rem;font-weight:700;margin-bottom:8px;}
-  .doc-header p{color:var(--grey);font-size:0.88rem;}
-  .doc-header p span{color:var(--red);}
-  h2{font-size:1.25rem;font-weight:700;margin:36px 0 12px;color:var(--white);}
-  h2::before{content:counter(sec) ". ";counter-increment:sec;color:var(--red);}
-  p{color:#c0c8d0;margin-bottom:14px;font-size:0.95rem;}
-  ul{color:#c0c8d0;margin:10px 0 14px 20px;font-size:0.95rem;}
-  li{margin-bottom:6px;}
-  a{color:var(--red);text-decoration:none;}
-  a:hover{text-decoration:underline;}
-  .highlight{background:rgba(255,49,49,0.08);border-left:3px solid var(--red);padding:14px 18px;border-radius:0 8px 8px 0;margin:20px 0;font-size:0.9rem;color:#c0c8d0;}
-  .data-table{width:100%;border-collapse:collapse;margin:20px 0;font-size:0.88rem;}
-  .data-table th{background:var(--card);color:var(--grey);padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);font-weight:700;}
-  .data-table td{padding:10px 14px;border-bottom:1px solid var(--border);color:#c0c8d0;vertical-align:top;}
-  .data-table tr:last-child td{border-bottom:none;}
-  footer-doc{display:block;text-align:center;padding:32px;color:var(--grey);font-size:0.82rem;border-top:1px solid var(--border);}
+@import url('https://fonts.googleapis.com/css2?family=Carlito:wght@400;700&display=swap');
+:root{
+  --bg:#0d1216;--red:#ff3131;--red2:rgba(255,49,49,0.1);--red3:rgba(255,49,49,0.25);
+  --white:#ffffff;--grey:#8a9099;--grey2:#c0c8d0;
+  --card:#141a20;--card2:#1a2228;--border:#1e2830;
+  --green:#4caf50;
+  --font:'Calibri','Carlito','Trebuchet MS',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:var(--font);line-height:1.75;font-size:16px;-webkit-font-smoothing:antialiased}
+a{color:var(--red);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5%;height:66px;
+  background:rgba(13,18,22,0.95);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--white);font-size:1.15rem;font-weight:700}
+.logo span{color:var(--red)}
+.back-btn{
+  display:flex;align-items:center;gap:7px;
+  color:var(--grey);font-size:.88rem;text-decoration:none;
+  border:1px solid var(--border);padding:7px 14px;border-radius:8px;
+  transition:all .2s;
+}
+.back-btn:hover{color:var(--white);border-color:var(--border);background:var(--card);text-decoration:none}
+.back-btn svg{width:14px;height:14px}
+
+/* ── LAYOUT ── */
+main{max-width:780px;margin:0 auto;padding:64px 5% 100px;counter-reset:sec}
+
+/* ── HEADER ── */
+.doc-header{margin-bottom:52px;padding-bottom:36px;border-bottom:1px solid var(--border)}
+.doc-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--red2);border:1px solid var(--red3);
+  color:var(--red);padding:4px 12px;border-radius:100px;
+  font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  margin-bottom:18px;
+}
+.doc-header h1{font-size:2.4rem;font-weight:700;letter-spacing:-.02em;margin-bottom:14px}
+.doc-meta{display:flex;flex-wrap:wrap;gap:20px;margin-top:14px}
+.doc-meta-item{display:flex;flex-direction:column;gap:2px}
+.doc-meta-label{font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--grey);font-weight:700}
+.doc-meta-value{font-size:.9rem;color:var(--grey2)}
+.doc-meta-value a{color:var(--red)}
+
+/* ── SUMMARY BOX ── */
+.summary-box{
+  background:rgba(76,175,80,0.07);border:1px solid rgba(76,175,80,0.25);
+  border-radius:12px;padding:20px 24px;margin-bottom:40px;
+}
+.summary-box-title{display:flex;align-items:center;gap:8px;font-weight:700;font-size:.95rem;color:var(--green);margin-bottom:10px}
+.summary-box-title svg{width:18px;height:18px;flex-shrink:0}
+.summary-items{display:flex;flex-direction:column;gap:7px}
+.summary-item{display:flex;align-items:flex-start;gap:10px;font-size:.9rem;color:var(--grey2)}
+.summary-item::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0;margin-top:1px}
+
+/* ── HIGHLIGHT ── */
+.highlight{
+  background:var(--red2);border-left:3px solid var(--red);
+  padding:16px 20px;border-radius:0 10px 10px 0;margin:24px 0;
+  font-size:.9rem;color:var(--grey2);
+}
+.highlight strong{color:var(--white)}
+
+/* ── SECTIONS ── */
+h2{
+  font-size:1.2rem;font-weight:700;margin:44px 0 14px;color:var(--white);
+  display:flex;align-items:center;gap:10px;
+  padding-top:44px;border-top:1px solid var(--border);
+}
+h2:first-of-type{border-top:none;padding-top:0}
+.section-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:28px;height:28px;border-radius:50%;
+  background:var(--red2);border:1px solid var(--red3);
+  color:var(--red);font-size:.75rem;font-weight:700;flex-shrink:0;
+  font-variant-numeric:tabular-nums;
+}
+p{color:var(--grey2);margin-bottom:14px;font-size:.95rem}
+ul{color:var(--grey2);margin:10px 0 16px 20px;font-size:.95rem}
+li{margin-bottom:8px;line-height:1.6}
+strong{color:var(--white)}
+
+/* ── TABLE ── */
+.tbl-wrap{overflow-x:auto;margin:20px 0;border-radius:12px;border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.88rem}
+thead tr{background:var(--card2)}
+th{color:var(--grey);padding:12px 16px;text-align:left;font-weight:700;font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;border-bottom:1px solid var(--border)}
+td{padding:12px 16px;border-bottom:1px solid var(--border);color:var(--grey2);vertical-align:top;line-height:1.55}
+tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:rgba(255,255,255,.02)}
+td strong{color:var(--white)}
+
+/* ── FOOTER ── */
+.doc-footer{
+  background:var(--card);border-top:1px solid var(--border);
+  padding:28px 5%;text-align:center;
+  color:var(--grey);font-size:.82rem;
+  display:flex;flex-wrap:wrap;justify-content:center;gap:20px;align-items:center;
+}
+.doc-footer a{color:var(--grey);transition:color .2s}
+.doc-footer a:hover{color:var(--white);text-decoration:none}
+
+@media(max-width:600px){
+  .doc-header h1{font-size:1.8rem}
+  .doc-meta{flex-direction:column;gap:12px}
+}
 </style>
 </head>
 <body>
+
 <nav>
-  <a href="/index.html" class="logo">
-    <svg viewBox="0 0 64 64" width="28" height="28" xmlns="http://www.w3.org/2000/svg">
+  <a href="/" class="logo">
+    <svg viewBox="0 0 64 64" width="30" height="30" xmlns="http://www.w3.org/2000/svg">
       <rect width="64" height="64" rx="10" fill="#0d1216"/>
       <path d="M48 16 Q48 33 32 33 Q16 33 16 48" stroke="#ff3131" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+      <path d="M43 11 Q53 11 53 21" stroke="#ff3131" stroke-width="4" fill="none" stroke-linecap="round"/>
       <circle cx="48" cy="12" r="6" fill="#ff3131"/>
+      <path d="M16 53 Q16 57 20 57" stroke="#ff3131" stroke-width="3" fill="none" stroke-linecap="round"/>
     </svg>
     Pulser <span>One</span>
   </a>
-  <a href="/index.html" class="back-btn">← Back to Home</a>
+  <a href="/" class="back-btn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    Back to Home
+  </a>
 </nav>
 
 <main>
   <div class="doc-header">
-    <h1>Privacy Policy</h1>
-    <p>Effective date: <span>1 January 2025</span> &nbsp;·&nbsp; Last updated: <span>April 2025</span></p>
-    <p>Data controller: Pulser &nbsp;·&nbsp; Contact: <span>go@pulser.fit</span></p>
+    <div class="doc-tag">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Privacy Policy
+    </div>
+    <h1>Your Privacy, Protected</h1>
+    <div class="doc-meta">
+      <div class="doc-meta-item"><span class="doc-meta-label">Effective date</span><span class="doc-meta-value">1 January 2026</span></div>
+      <div class="doc-meta-item"><span class="doc-meta-label">Last updated</span><span class="doc-meta-value">April 2026</span></div>
+      <div class="doc-meta-item"><span class="doc-meta-label">Data controller</span><span class="doc-meta-value">Pulser · Warsaw, Poland</span></div>
+      <div class="doc-meta-item"><span class="doc-meta-label">Contact</span><span class="doc-meta-value"><a href="mailto:go@pulser.fit">go@pulser.fit</a></span></div>
+    </div>
   </div>
 
-  <div class="highlight">
-    <strong>Short version:</strong> Camera video never leaves your device. AI analysis runs on-device. We collect only what's necessary to run the service. You can delete your data at any time by emailing go@pulser.fit.
+  <div class="summary-box">
+    <div class="summary-box-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      The short version — what actually matters
+    </div>
+    <div class="summary-items">
+      <div class="summary-item">Camera video never leaves your device. AI runs entirely on-device.</div>
+      <div class="summary-item">Health Connect data is never sold or shared for advertising.</div>
+      <div class="summary-item">We collect only what's necessary to run the service.</div>
+      <div class="summary-item">You can delete all your data at any time.</div>
+      <div class="summary-item">We are GDPR-compliant and based in Poland (EU).</div>
+    </div>
   </div>
 
-  <h2>Who We Are</h2>
-  <p>Pulser ("we," "us," "our") operates the Pulser One mobile application and the website one.pulser.fit. We are committed to protecting your personal data in accordance with the EU General Data Protection Regulation (GDPR), the UK GDPR, and applicable national data protection laws.</p>
+  <h2><span class="section-num">1</span> Who We Are</h2>
+  <p>Pulser ("we", "us", "our") operates the Pulser One mobile application and the website one.pulser.fit. We are committed to protecting your personal data in accordance with the EU General Data Protection Regulation (GDPR), the UK GDPR, and applicable national data protection laws. Our registered address is in Warsaw, Poland.</p>
 
-  <h2>Data We Collect</h2>
+  <h2><span class="section-num">2</span> Data We Collect</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Category</th><th>Data</th><th>Purpose</th><th>Legal Basis</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Account</strong></td><td>Email address, name (optional)</td><td>Waitlist communications, account creation</td><td>Consent</td></tr>
+        <tr><td><strong>Device</strong></td><td>Device model, OS version, app version</td><td>Bug fixing, compatibility</td><td>Legitimate interest</td></tr>
+        <tr><td><strong>Usage</strong></td><td>Feature usage (anonymised), session duration</td><td>Product improvement</td><td>Legitimate interest</td></tr>
+        <tr><td><strong>Camera</strong></td><td>Live video stream — <strong>processed on-device only, never transmitted</strong></td><td>Movement analysis, body scan</td><td>Consent</td></tr>
+        <tr><td><strong>Health data</strong></td><td>HRV, sleep, resting HR, steps (via Health Connect / HealthKit)</td><td>Injury risk scoring, programme personalisation</td><td>Explicit consent</td></tr>
+        <tr><td><strong>Exercise history</strong></td><td>Rep counts, form scores, session timestamps</td><td>Progress tracking, adaptive programming</td><td>Contract performance</td></tr>
+        <tr><td><strong>Waitlist</strong></td><td>Email, device type, fitness goal, language, region</td><td>Pre-launch communications</td><td>Consent</td></tr>
+      </tbody>
+    </table>
+  </div>
 
-  <table class="data-table">
-    <thead><tr><th>Category</th><th>Data</th><th>Purpose</th><th>Legal Basis</th></tr></thead>
-    <tbody>
-      <tr><td>Account</td><td>Email address, name (optional)</td><td>Waitlist communication, account creation</td><td>Consent</td></tr>
-      <tr><td>Device</td><td>Device model, OS version, app version</td><td>Bug fixing, compatibility</td><td>Legitimate interest</td></tr>
-      <tr><td>Usage</td><td>Feature usage (anonymised), session duration</td><td>Product improvement</td><td>Legitimate interest</td></tr>
-      <tr><td>Camera</td><td>Live video stream (processed on-device only)</td><td>Movement analysis, body scan</td><td>Consent</td></tr>
-      <tr><td>Health data</td><td>HRV, sleep, resting HR, steps (via Health Connect / HealthKit)</td><td>Injury risk scoring, programme personalisation</td><td>Explicit consent</td></tr>
-      <tr><td>Exercise history</td><td>Rep counts, form scores, session timestamps</td><td>Progress tracking, adaptive programming</td><td>Contract performance</td></tr>
-    </tbody>
-  </table>
+  <h2><span class="section-num">3</span> Camera Data and On-Device Processing</h2>
+  <p>The Pulser One camera feature processes your live video stream entirely on your device using the MediaPipe Pose Landmarker model. <strong>No video footage, raw frames, or image data is ever transmitted to our servers or any third party.</strong> The only data that leaves your device is the computed output — anonymised joint angle scores and rep counts — which may be stored in your account to power progress tracking.</p>
+  <p>This is by design, not by policy. The architecture makes camera data transmission technically impossible without your knowledge.</p>
 
-  <h2>Camera Data and On-Device Processing</h2>
-  <p>The Pulser One camera feature processes your live video stream entirely on your device using the MediaPipe Pose Landmarker model. No video footage, raw frames, or image data is ever transmitted to our servers or any third party. The only data that leaves your device is the computed output — anonymised joint angle scores and rep counts — which may be stored in your account to power progress tracking.</p>
-
-  <h2>Health Connect and HealthKit</h2>
+  <h2><span class="section-num">4</span> Health Connect and Apple HealthKit</h2>
   <p>With your explicit consent, we access health metrics from Android Health Connect or Apple HealthKit to compute your injury risk score and personalise your training programme. This data:</p>
   <ul>
-    <li>Is read only — we do not write to Health Connect without your explicit action</li>
-    <li>Is not sold to any third party</li>
-    <li>Is not used for advertising purposes</li>
-    <li>Can be disconnected at any time in the app Settings</li>
-    <li>Is stored encrypted in your account and deleted when you delete your account</li>
+    <li>Is <strong>read only</strong> — we do not write to Health Connect without your explicit action</li>
+    <li>Is <strong>not sold</strong> to any third party, ever</li>
+    <li>Is <strong>not used</strong> for advertising purposes</li>
+    <li>Can be <strong>disconnected at any time</strong> in App Settings → Health</li>
+    <li>Is stored <strong>encrypted</strong> in your account and deleted permanently when you delete your account</li>
+    <li>Is processed in accordance with <a href="https://developer.android.com/health-connect" target="_blank" rel="noopener">Google Health Connect data policies</a></li>
   </ul>
 
-  <h2>Body Scan Data</h2>
-  <p>Body scan results — including estimated body shape, frame size, proportions, and composition estimates — are stored locally on your device and optionally in your encrypted account for progress comparison. These results are derived from 2D keypoint measurements and are clearly labelled as estimates. We do not share this data externally.</p>
+  <h2><span class="section-num">5</span> Body Scan Data</h2>
+  <p>Body scan results — including estimated body shape, frame size, proportions, and composition estimates — are derived from 2D camera keypoints and stored locally on your device. They are optionally synced to your encrypted account for progress comparison. These results are estimates based on validated anthropometric formulas and are clearly labelled as such within the app.</p>
+  <p>We do not share body scan data with any external party, advertiser, or insurer.</p>
 
-  <h2>Waitlist and Email Communications</h2>
-  <p>When you join the waitlist at one.pulser.fit, we store your email address and any optional information you provide (name, device platform, fitness goal) to send you updates about Pulser One's launch. We use formsubmit.co to process waitlist submissions. Emails are sent via standard email infrastructure. You can unsubscribe from any email by clicking the unsubscribe link or emailing go@pulser.fit.</p>
+  <h2><span class="section-num">6</span> Waitlist and Email Communications</h2>
+  <p>When you join the waitlist at one.pulser.fit, we store your email address and any optional information you provide (name, device platform, fitness goal, language, region) to send you updates about Pulser One's development and launch. We use formsubmit.co to process form submissions securely.</p>
+  <p>We will not share your email with third parties for marketing purposes. Maximum email frequency before launch: one per month. You can unsubscribe at any time by clicking the unsubscribe link in any email or emailing <a href="mailto:go@pulser.fit">go@pulser.fit</a>.</p>
 
-  <h2>Cookies and Tracking</h2>
-  <p>The one.pulser.fit website uses:</p>
+  <h2><span class="section-num">7</span> Cookies and Tracking</h2>
+  <p>The one.pulser.fit website uses only the following:</p>
   <ul>
-    <li><strong>ipapi.co</strong> — a single anonymous API call to detect your country for regional pricing and language auto-detection. No persistent identifier is stored.</li>
-    <li><strong>localStorage</strong> — stores your language preference locally in your browser. No data is transmitted.</li>
+    <li><strong>ipapi.co</strong> — a single anonymous API call to detect your country for regional pricing and language auto-detection. No persistent identifier is stored by us.</li>
+    <li><strong>localStorage</strong> — stores your language preference locally in your browser only. No data is transmitted to any server.</li>
   </ul>
-  <p>We do not use advertising cookies, cross-site tracking, or analytics platforms that identify individuals.</p>
+  <p>We do <strong>not</strong> use advertising cookies, Google Analytics, Meta Pixel, cross-site tracking, or any analytics platform that identifies individuals. No cookie consent banner is required because we don't use tracking cookies.</p>
 
-  <h2>Third-Party Services</h2>
-  <table class="data-table">
-    <thead><tr><th>Service</th><th>Purpose</th><th>Data shared</th></tr></thead>
-    <tbody>
-      <tr><td>formsubmit.co</td><td>Waitlist form processing</td><td>Email, name, form fields</td></tr>
-      <tr><td>ipapi.co</td><td>Country detection for pricing</td><td>IP address (not stored by us)</td></tr>
-      <tr><td>Google Play / Apple App Store</td><td>App distribution and subscription billing</td><td>Transaction data per platform policy</td></tr>
-    </tbody>
-  </table>
+  <h2><span class="section-num">8</span> Third-Party Services</h2>
+  <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>Service</th><th>Purpose</th><th>Data shared</th><th>Their policy</th></tr></thead>
+      <tbody>
+        <tr><td><strong>formsubmit.co</strong></td><td>Waitlist form processing</td><td>Email, name, form fields</td><td><a href="https://formsubmit.co/privacy" target="_blank" rel="noopener">formsubmit.co/privacy</a></td></tr>
+        <tr><td><strong>ipapi.co</strong></td><td>Country detection for pricing &amp; language</td><td>IP address (not stored by us)</td><td><a href="https://ipapi.co/privacy/" target="_blank" rel="noopener">ipapi.co/privacy</a></td></tr>
+        <tr><td><strong>Google Play</strong></td><td>App distribution &amp; subscription billing (Android)</td><td>Transaction data per Google policy</td><td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a></td></tr>
+        <tr><td><strong>Apple App Store</strong></td><td>App distribution &amp; subscription billing (iOS)</td><td>Transaction data per Apple policy</td><td><a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener">Apple Privacy Policy</a></td></tr>
+      </tbody>
+    </table>
+  </div>
 
-  <h2>Data Retention</h2>
-  <p>We retain your data for as long as you have an active account or as necessary to provide the Service. Exercise history and body scan results are retained for the duration of your account. Waitlist email addresses are retained until you unsubscribe or the Service launches. You may request deletion at any time.</p>
-
-  <h2>Your Rights (GDPR)</h2>
-  <p>If you are located in the European Economic Area, UK, or Switzerland, you have the following rights:</p>
+  <h2><span class="section-num">9</span> Data Retention</h2>
   <ul>
-    <li><strong>Access</strong> — request a copy of your personal data</li>
+    <li><strong>Exercise history and body scan results:</strong> retained for the duration of your active account</li>
+    <li><strong>Health data:</strong> retained until you disconnect Health Connect in settings or delete your account</li>
+    <li><strong>Waitlist email addresses:</strong> retained until you unsubscribe or 24 months after collection, whichever comes first</li>
+    <li><strong>Anonymised usage analytics:</strong> retained indefinitely (no personal identifier attached)</li>
+    <li><strong>Account data:</strong> deleted within 30 days of a deletion request</li>
+  </ul>
+
+  <h2><span class="section-num">10</span> Your Rights Under GDPR</h2>
+  <p>If you are in the EEA, UK, or Switzerland, you have the following rights:</p>
+  <ul>
+    <li><strong>Access</strong> — request a copy of all personal data we hold about you</li>
     <li><strong>Rectification</strong> — correct inaccurate personal data</li>
-    <li><strong>Erasure</strong> — request deletion of your personal data</li>
-    <li><strong>Portability</strong> — receive your data in a machine-readable format</li>
+    <li><strong>Erasure ("right to be forgotten")</strong> — request deletion of your personal data</li>
+    <li><strong>Portability</strong> — receive your data in a machine-readable format (JSON or CSV)</li>
     <li><strong>Restriction</strong> — request we limit processing of your data</li>
     <li><strong>Objection</strong> — object to processing based on legitimate interests</li>
     <li><strong>Withdraw consent</strong> — at any time, without affecting prior processing</li>
   </ul>
-  <p>To exercise any right, contact us at <a href="mailto:go@pulser.fit">go@pulser.fit</a>. We will respond within 30 days.</p>
+  <p>To exercise any right, email <a href="mailto:go@pulser.fit">go@pulser.fit</a> with subject "Privacy Request". We will respond within <strong>30 days</strong>.</p>
+  <p>You also have the right to lodge a complaint with a supervisory authority. In Poland: <a href="https://uodo.gov.pl" target="_blank" rel="noopener">UODO — uodo.gov.pl</a>. In other EU states, contact your national data protection authority.</p>
 
-  <h2>Children's Privacy</h2>
-  <p>The Service is not directed at children under the age of 16. We do not knowingly collect personal data from children under 16. If you believe we have inadvertently collected such data, contact us immediately at go@pulser.fit.</p>
+  <h2><span class="section-num">11</span> Children's Privacy</h2>
+  <p>The Service is not directed at children under 16. We do not knowingly collect personal data from children under 16. If you believe we have inadvertently collected such data, contact us immediately at <a href="mailto:go@pulser.fit">go@pulser.fit</a> and we will delete it within 72 hours.</p>
 
-  <h2>Data Security</h2>
-  <p>We implement appropriate technical and organisational measures to protect your personal data against unauthorised access, disclosure, or destruction. Health and body scan data is encrypted at rest and in transit. However, no transmission over the internet is completely secure, and we cannot guarantee absolute security.</p>
+  <h2><span class="section-num">12</span> Data Security</h2>
+  <p>We implement appropriate technical and organisational security measures including:</p>
+  <ul>
+    <li>TLS encryption for all data in transit</li>
+    <li>AES-256 encryption for health and body scan data at rest</li>
+    <li>Role-based access controls — staff access only what is necessary for their role</li>
+    <li>Regular security reviews and dependency audits</li>
+    <li>GDPR breach notification procedures (we notify within 72 hours if required)</li>
+  </ul>
 
-  <h2>International Transfers</h2>
-  <p>If you are located outside Poland, your data may be transferred to and processed in countries that may have different data protection laws. Where required, we ensure appropriate safeguards are in place (such as Standard Contractual Clauses) before transferring your data.</p>
+  <h2><span class="section-num">13</span> International Transfers</h2>
+  <p>Our primary infrastructure is hosted within the EU. Where any data transfer outside the EEA is required (e.g., for third-party services listed above), we ensure appropriate safeguards are in place in accordance with GDPR Chapter V, including Standard Contractual Clauses (SCCs) where applicable.</p>
 
-  <h2>Changes to This Policy</h2>
-  <p>We may update this Privacy Policy from time to time. We will notify you of material changes by email or via an in-app notification. The updated Policy will be posted at one.pulser.fit/privacy with a revised effective date.</p>
+  <h2><span class="section-num">14</span> Changes to This Policy</h2>
+  <p>We may update this Privacy Policy from time to time. We will notify you of material changes by email (for waitlist members) or via an in-app notification, at least 30 days before changes take effect. The updated Policy will always be posted at one.pulser.fit/privacy with a revised effective date.</p>
 
-  <h2>Contact and Complaints</h2>
-  <p>For privacy questions or requests, contact: <a href="mailto:go@pulser.fit">go@pulser.fit</a></p>
-  <p>If you are dissatisfied with our response, you have the right to lodge a complaint with your local data protection authority. In Poland, this is the Urząd Ochrony Danych Osobowych (UODO) at <a href="https://uodo.gov.pl" target="_blank">uodo.gov.pl</a>. If you are located in another EU member state, you may contact your national supervisory authority.</p>
+  <h2><span class="section-num">15</span> Contact</h2>
+  <p>For privacy questions, data requests, or concerns:</p>
+  <ul>
+    <li>Email: <a href="mailto:go@pulser.fit">go@pulser.fit</a> (subject: "Privacy Request")</li>
+    <li>Response time: within 30 days (usually within 3 business days)</li>
+    <li>Supervisory authority (Poland): <a href="https://uodo.gov.pl" target="_blank" rel="noopener">UODO — uodo.gov.pl</a></li>
+  </ul>
 </main>
 
-<footer-doc>
-  <p>© 2025 Pulser One &nbsp;·&nbsp; <a href="/terms.html">Terms of Service</a> &nbsp;·&nbsp; <a href="/privacy.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="mailto:go@pulser.fit">go@pulser.fit</a></p>
-</footer-doc>
+<div class="doc-footer">
+  <span>© 2026 Pulser One · Warsaw, Poland</span>
+  <a href="/">Home</a>
+  <a href="/terms.html">Terms of Service</a>
+  <a href="/privacy.html">Privacy Policy</a>
+  <a href="mailto:go@pulser.fit">go@pulser.fit</a>
+</div>
+
 </body>
 </html>
