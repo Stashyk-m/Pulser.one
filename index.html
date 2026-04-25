@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Pulser.One — AI Coach Built for You</title>
+<link rel="icon" href="https://pulser.fit/assets/favicon.svg" type="image/svg+xml">
+<meta name="description" content="Pulser.One is your free AI coach — body scan, live form feedback, injury-risk scoring, and personalised training plans. Powered by proprietary DeepTech, built in the EU." />
+<meta property="og:title" content="Pulser.One — AI Coach Built for You" />
+<meta property="og:description" content="Free AI coach with body scan, live form feedback, injury-risk scoring, and personalised training. Powered by proprietary DeepTech." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://one.pulser.fit" />
+<meta property="og:image" content="https://pulser.fit/assets/og-image.png" />
+<meta property="og:image:alt" content="Pulser.One — AI Coach Built for You" />
+<meta property="og:site_name" content="Pulser.fit" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Pulser.One — AI Coach Built for You" />
+<meta name="twitter:description" content="Free AI coach with body scan, live form feedback, injury-risk scoring, and personalised training. Powered by proprietary DeepTech." />
+<meta name="twitter:image" content="https://pulser.fit/assets/og-image.png" />
+<meta name="theme-color" content="#FF3B47" />
+<link rel="canonical" href="https://one.pulser.fit" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config = { theme: { extend: { colors: { brand: '#FF3B47', bg: '#0A0A0F', elev: '#12121A' } } } };</script>
+<style>
+  :root {
+    --bg: #0A0A0F;
+    --elev: #12121A;
+    --text: #FFFFFF;
+    --text-muted: rgba(255,255,255,0.55);
+    --accent: #FF3B47;
+    --border: rgba(255,255,255,0.06);
+    --border-strong: rgba(255,255,255,0.12);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+
+  /* Background aura */
+  .bg-aura { position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(255,59,71,0.10) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 40% at 80% 20%, rgba(255,59,71,0.04) 0%, transparent 50%);
+  }
+
+  /* Nav */
+  .nav { position: sticky; top: 0; z-index: 50; background: rgba(10,10,15,0.85); backdrop-filter: blur(16px) saturate(1.6); border-bottom: 1px solid var(--border); }
+  .logo-mark { display: flex; align-items: center; gap: 0.5rem; font-weight: 800; font-size: 0.95rem; letter-spacing: 0.06em; text-decoration: none; color: #fff; }
+  .logo-mark svg { width: 1.8rem; height: 1.8rem; }
+  .nav-link { font-size: 0.82rem; color: var(--text-muted); font-weight: 500; text-decoration: none; transition: color 0.15s; }
+  .nav-link:hover, .nav-link.is-active { color: #fff; }
+
+  /* Buttons */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.65rem 1.4rem; border-radius: 0.65rem; font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: all 0.2s; border: 1px solid transparent; cursor: pointer; }
+  .btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .btn-primary:hover { background: #e63340; transform: translateY(-1px); box-shadow: 0 8px 30px -8px rgba(255,59,71,0.5); }
+  .btn-outline { border-color: var(--border-strong); color: #fff; background: transparent; }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.04); }
+  .btn-ghost { color: var(--text-muted); border-color: transparent; background: transparent; }
+  .btn-ghost:hover { color: #fff; }
+  .btn-lg { padding: 0.8rem 1.8rem; font-size: 0.9rem; }
+
+  /* Typography */
+  .eyebrow { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.14em; font-weight: 700; color: var(--accent); }
+  .heading-xl { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; }
+  .heading-lg { font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.015em; }
+  .heading-md { font-size: clamp(1.15rem, 2vw, 1.4rem); font-weight: 700; line-height: 1.25; }
+  .gradient-red { background: linear-gradient(135deg, #FF3B47 0%, #FF8A92 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+  /* Cards */
+  .card { background: var(--elev); border: 1px solid var(--border-strong); border-radius: 1rem; padding: 1.5rem; transition: border-color 0.2s, transform 0.2s; }
+  .card:hover { border-color: rgba(255,255,255,0.18); }
+  .card-accent { border-color: rgba(255,59,71,0.25); background: linear-gradient(160deg, #12121A 0%, rgba(255,59,71,0.06) 100%); }
+  .glow-red { box-shadow: 0 0 60px -15px rgba(255,59,71,0.25); }
+
+  /* Reveal animation */
+  [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  [data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+
+  /* Mobile menu */
+  .mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+  .mobile-menu.is-open { max-height: 500px; }
+
+  /* Footer */
+  .site-footer { background: var(--bg); border-top: 1px solid var(--border); }
+
+  /* Email input */
+  .email-input { background: rgba(255,255,255,0.06); border: 1px solid var(--border-strong); border-radius: 0.65rem; padding: 0.7rem 1rem; color: #fff; font-size: 0.85rem; width: 100%; outline: none; font-family: inherit; transition: border-color 0.2s; }
+  .email-input:focus { border-color: var(--accent); }
+  .email-input::placeholder { color: rgba(255,255,255,0.3); }
+
+  /* Subtle pulse ring animation */
+  @keyframes pulse-ring { 0% { opacity: 0.35; transform: scale(0.92); } 40% { opacity: 1; transform: scale(1.00); } 100% { opacity: 0.35; transform: scale(0.92); } }
+  .logo-mark svg .pulse-ring { transform-origin: 50% 50%; animation: pulse-ring 2.2s ease-in-out infinite; }
+  .logo-mark svg .pulse-ring-2 { animation-delay: 0.35s; }
+  .logo-mark svg .pulse-ring-3 { animation-delay: 0.7s; }
+
+  /* FAQ accordion */
+  .faq-item { border-bottom: 1px solid var(--border-strong); }
+  .faq-btn { width: 100%; text-align: left; background: none; border: none; color: #fff; font-size: 0.95rem; font-weight: 600; padding: 1.2rem 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: inherit; }
+  .faq-btn:hover { color: var(--accent); }
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease, padding 0.3s ease; }
+  .faq-answer.is-open { max-height: 300px; padding-bottom: 1.2rem; }
+  .faq-chevron { transition: transform 0.2s; font-size: 1.2rem; color: rgba(255,255,255,0.3); }
+  .faq-btn.is-open .faq-chevron { transform: rotate(45deg); color: var(--accent); }
+
+  /* Step number */
+  .step-num { width: 3rem; height: 3rem; border-radius: 50%; background: rgba(255,59,71,0.12); border: 1px solid rgba(255,59,71,0.25); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; color: var(--accent); flex-shrink: 0; }
+</style>
+</head>
+<body>
+<div class="bg-aura"></div>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- NAV — hybrid: Pulser.One focused + link to main site   -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<header class="nav">
+  <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="https://pulser.fit" class="logo-mark" title="Back to Pulser.fit">
+      <svg viewBox="0 0 100 100" fill="none" aria-hidden="true">
+        <path class="pulse-ring" d="M 50,8 A 42,42 0 1 1 8,50" stroke="#FF3B47" stroke-width="9" fill="none"/>
+        <path class="pulse-ring pulse-ring-2" d="M 50,24 A 26,26 0 1 1 24,50" stroke="#FF3B47" stroke-width="9" fill="none"/>
+        <path class="pulse-ring pulse-ring-3" d="M 36,50 A 14,14 0 0 1 64,50 Z" fill="#FF3B47"/>
+      </svg>
+      <span>PULSER<span style="color: var(--accent); font-weight: 400;">.One</span></span>
+    </a>
+    <nav class="hidden md:flex items-center gap-8">
+      <a href="#features" class="nav-link">Features</a>
+      <a href="#how-it-works" class="nav-link">How It Works</a>
+      <a href="#pricing" class="nav-link">Pricing</a>
+      <a href="#faq" class="nav-link">FAQ</a>
+      <a href="https://pulser.fit" class="nav-link" style="opacity:0.4; font-size:0.75rem;">pulser.fit ↗</a>
+    </nav>
+    <div class="flex items-center gap-3">
+      <a href="#waitlist" class="btn btn-primary hidden sm:inline-flex">Join Waitlist</a>
+      <button id="menu-toggle" aria-label="Menu" aria-expanded="false" class="md:hidden p-2 border border-white/10 rounded-lg">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobile-menu" class="mobile-menu md:hidden border-t border-white/5 bg-[#0A0A0F]">
+    <div class="px-6 py-4 flex flex-col gap-4 text-sm">
+      <a href="#features" class="nav-link">Features</a>
+      <a href="#how-it-works" class="nav-link">How It Works</a>
+      <a href="#pricing" class="nav-link">Pricing</a>
+      <a href="#faq" class="nav-link">FAQ</a>
+      <a href="https://pulser.fit" class="nav-link">pulser.fit ↗</a>
+      <a href="#waitlist" class="btn btn-primary w-full justify-center">Join Waitlist</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- HERO                                                     -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="pt-20 pb-20 md:pt-28 md:pb-28">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+      <div>
+        <div class="eyebrow mb-5">Pulser.One · AI Coach</div>
+        <h1 class="heading-xl mb-6">Your gym. Your coach. <span class="gradient-red">Your body.</span> One app.</h1>
+        <p class="text-lg md:text-xl text-white/65 mb-8 leading-relaxed">Free AI coach with body scan, live form feedback, injury-risk scoring, and personalised training plans — powered by our proprietary DeepTech movement engine. Not a wrapper. Not a chatbot. Real biomechanics, running on your phone.</p>
+        <div class="flex flex-wrap gap-3 mb-8">
+          <a href="#waitlist" class="btn btn-primary btn-lg">Join the Waitlist</a>
+          <a href="#crowdfunding" class="btn btn-outline btn-lg">Back Us</a>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <span class="text-xs px-3 py-1 rounded-full border border-white/10 text-white/50">DeepTech</span>
+          <span class="text-xs px-3 py-1 rounded-full border border-white/10 text-white/50">EHDS-ready</span>
+          <span class="text-xs px-3 py-1 rounded-full border border-white/10 text-white/50">Built in the EU</span>
+          <span class="text-xs px-3 py-1 rounded-full border border-white/10 text-white/50">Free tier forever</span>
+        </div>
+      </div>
+
+      <!-- Phone mockup -->
+      <div class="mx-auto" style="max-width:340px;">
+        <div style="background:#000;border-radius:38px;padding:10px;border:1px solid rgba(255,255,255,0.08);box-shadow:0 40px 100px -20px rgba(255,59,71,0.25), 0 0 0 1px rgba(255,59,71,0.15);">
+          <div style="background:linear-gradient(160deg,#0a0a1a 0%,#06121a 55%,#0a0a0a 100%);border-radius:30px;overflow:hidden;position:relative;aspect-ratio:9/19;">
+            <div style="position:absolute;top:10px;left:50%;transform:translateX(-50%);width:90px;height:24px;background:#000;border-radius:14px;z-index:2;"></div>
+            <div style="position:absolute;top:14px;left:18px;right:18px;display:flex;justify-content:space-between;font-size:11px;color:#fff;font-weight:600;z-index:3;">
+              <span>9:41</span>
+              <span>●●● ● <span style="color:#00E676;">100%</span></span>
+            </div>
+            <div style="padding:52px 18px 18px 18px;color:#fff;font-size:12px;line-height:1.35;">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+                <div>
+                  <div style="font-size:10px;color:#9E9E9E;text-transform:uppercase;letter-spacing:.08em;">Good morning</div>
+                  <div style="font-size:16px;font-weight:800;">Welcome</div>
+                </div>
+                <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#FF3B47,#FF8A92);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;">P</div>
+              </div>
+              <div style="background:linear-gradient(180deg,rgba(41,121,255,.08),rgba(41,121,255,.02));border:1px solid rgba(41,121,255,.25);border-radius:14px;padding:12px;margin-bottom:10px;">
+                <div style="font-size:9px;color:#2979FF;text-transform:uppercase;letter-spacing:.1em;font-weight:700;">Injury Risk Score</div>
+                <div style="display:flex;align-items:baseline;gap:6px;margin-top:4px;">
+                  <div style="font-size:26px;font-weight:900;line-height:1;">14</div>
+                  <div style="font-size:11px;color:#9E9E9E;">/ 100 · Low</div>
+                </div>
+                <div style="position:relative;height:5px;border-radius:3px;margin-top:9px;background:linear-gradient(90deg,#00E676 0%,#FFC107 50%,#FF1744 100%);">
+                  <div style="position:absolute;top:-3px;left:14%;width:11px;height:11px;border-radius:50%;background:#fff;border:2px solid #2979FF;"></div>
+                </div>
+              </div>
+              <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:12px;margin-bottom:10px;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+                  <div style="font-size:9px;color:#9E9E9E;text-transform:uppercase;letter-spacing:.1em;font-weight:700;">Today · Push day</div>
+                  <div style="font-size:9px;color:#FF3B47;font-weight:700;">45 min</div>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:6px;">
+                  <div style="display:flex;justify-content:space-between;padding:7px 9px;background:rgba(255,255,255,.03);border-radius:8px;font-size:11px;"><span>Bench press</span><span style="color:#9E9E9E;">4×8</span></div>
+                  <div style="display:flex;justify-content:space-between;padding:7px 9px;background:rgba(255,255,255,.03);border-radius:8px;font-size:11px;"><span>Overhead press</span><span style="color:#9E9E9E;">3×10</span></div>
+                  <div style="display:flex;justify-content:space-between;padding:7px 9px;background:rgba(255,255,255,.03);border-radius:8px;font-size:11px;"><span>Incline DB</span><span style="color:#9E9E9E;">3×12</span></div>
+                  <div style="display:flex;justify-content:space-between;padding:7px 9px;background:rgba(255,255,255,.03);border-radius:8px;font-size:11px;opacity:.55;"><span>Triceps pushdown</span><span>3×15</span></div>
+                </div>
+              </div>
+              <div style="background:rgba(255,59,71,.1);border:1px solid rgba(255,59,71,.35);border-radius:14px;padding:11px;">
+                <div style="display:flex;align-items:center;gap:6px;margin-bottom:4px;">
+                  <div style="width:14px;height:14px;border-radius:50%;background:#FF3B47;"></div>
+                  <div style="font-size:9px;color:#FF3B47;text-transform:uppercase;letter-spacing:.1em;font-weight:700;">AI Coach</div>
+                </div>
+                <div style="font-size:11px;color:#fff;">HRV is down 18% vs your 7-day baseline — swapped heavy bench for a technique session. Tap to accept.</div>
+              </div>
+            </div>
+            <div style="position:absolute;bottom:0;left:0;right:0;height:58px;background:rgba(0,0,0,.8);border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-around;align-items:center;backdrop-filter:blur(8px);">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:2px;color:#FF3B47;font-size:9px;font-weight:700;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 2 12h3v8h5v-6h4v6h5v-8h3z"/></svg>Home
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:2px;color:#9E9E9E;font-size:9px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>Train
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:2px;color:#9E9E9E;font-size:9px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>Scan
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:center;gap:2px;color:#9E9E9E;font-size:9px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Me
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- PROBLEM — why existing apps fail                        -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="py-20 border-t border-white/5" data-reveal>
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <div class="eyebrow mb-5">The Problem</div>
+      <h2 class="heading-lg mb-8">Fitness apps give you a plan. <span class="gradient-red">Not a coach.</span></h2>
+      <div class="grid md:grid-cols-3 gap-6 text-left">
+        <div class="card">
+          <div class="text-2xl mb-3">📋</div>
+          <h3 class="font-bold mb-2 text-sm">Generic programmes</h3>
+          <p class="text-white/50 text-sm leading-relaxed">Cookie-cutter plans that don't know your body, your injury history, or what equipment you have.</p>
+        </div>
+        <div class="card">
+          <div class="text-2xl mb-3">🤷</div>
+          <h3 class="font-bold mb-2 text-sm">Zero form feedback</h3>
+          <p class="text-white/50 text-sm leading-relaxed">No one tells you your squat depth is off or your left shoulder is compensating — until you get hurt.</p>
+        </div>
+        <div class="card">
+          <div class="text-2xl mb-3">💸</div>
+          <h3 class="font-bold mb-2 text-sm">Pay for a human coach</h3>
+          <p class="text-white/50 text-sm leading-relaxed">Real coaching costs €50–100/session. Most people can't afford it. So they train blind.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- SOLUTION — what Pulser.One does differently             -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="py-20 border-t border-white/5" data-reveal>
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="max-w-3xl mx-auto text-center mb-14">
+        <div class="eyebrow mb-5">The Solution</div>
+        <h2 class="heading-lg mb-4">A real AI coach. <span class="gradient-red">Not a chatbot in gym clothes.</span></h2>
+        <p class="text-white/60 text-lg leading-relaxed">Pulser.One uses your phone camera and a proprietary movement engine to see how you move, score your form, predict injuries, and build plans that actually adapt to you.</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="card card-accent">
+          <div class="eyebrow mb-3">DeepTech · Proprietary</div>
+          <h3 class="heading-md mb-3">Not a wrapper. A movement engine.</h3>
+          <p class="text-white/70 leading-relaxed">Built on our own proprietary movement interpretation layer — body scan, form scoring, injury-risk modelling, fatigue detection — all running locally on your phone. We own the IP. No third-party AI dependency.</p>
+        </div>
+        <div class="card">
+          <div class="eyebrow mb-3">Cross-Gym Access</div>
+          <h3 class="heading-md mb-3">One membership. Any partner gym.</h3>
+          <p class="text-white/70 leading-relaxed">Travelling? Moving? Every Pulser.One member can check in at any gym on the Pulser network — no extra apps, no surprise day-passes. Your plan, your coach and your history come with you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- FEATURES — core capabilities                            -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section id="features" class="py-24 border-t border-white/5" data-reveal>
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="max-w-3xl mb-14">
+        <div class="eyebrow mb-4">Core Features</div>
+        <h2 class="heading-lg">Everything your coach would charge for — built in.</h2>
+        <p class="text-white/60 mt-5 leading-relaxed">Built from scratch with AI in the core, not bolted on as a marketing tagline.</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="card card-accent">
+          <div class="text-xs uppercase tracking-widest text-brand font-semibold mb-2">Camera · On-device</div>
+          <h3 class="font-bold mb-2">Live Movement AI</h3>
+          <p class="text-white/65 text-sm leading-relaxed">MediaPipe tracks 33 body keypoints at 30fps — no cloud, no lag. Real joint angles, bilateral symmetry, form score per rep.</p>
+        </div>
+        <div class="card">
+          <div class="text-xs uppercase tracking-widest text-brand font-semibold mb-2">Front · Side · Back · Left</div>
+          <h3 class="font-bold mb-2">360° Body Scan</h3>
+          <p class="text-white/65 text-sm leading-relaxed">Rotate once. Get body shape, frame size, composition estimate, posture flags, and a training plan built for your actual proportions.</p>
+        </div>
+        <div class="card">
+          <div class="text-xs uppercase tracking-widest text-brand font-semibold mb-2">AI · Predictive · Health Connect</div>
+          <h3 class="font-bold mb-2">Predictive Injury Detection</h3>
+          <p class="text-white/65 text-sm leading-relaxed">AI analyses joint biomechanics, movement asymmetry and Health Connect data to predict injury risk before it happens — a 0–100 score with personalised prevention cues.</p>
+        </div>
+        <div class="card">
+          <div class="text-xs uppercase tracking-widest text-brand font-semibold mb-2">500+ Devices · Android & iOS</div>
+          <h3 class="font-bold mb-2">Wearable Integration</h3>
+          <p class="text-white/65 text-sm leading-relaxed">Reads Apple Health, Garmin, Whoop, Oura, Fitbit, Samsung Health — all feeding the injury-risk model and adaptive programming automatically.</p>
+        </div>
+        <div class="card">
+          <div class="text-xs uppercase tracking-widest text-brand font-semibold mb-2">Adaptive · Personalised</div>
+          <h3 class="font-bold mb-2">Smart Programming</h3>
+          <p class="text-white/65 text-sm leading-relaxed">Your workout plan updates based on your body scan, movement history and wearable data. No questionnaire guessing.</p>
+        </div>
+        <div class="card">
+          <div class="text-xs uppercase tracking-widest text-brand font-semibold mb-2">Equipment-Aware</div>
+          <h3 class="font-bold mb-2">Smart Equipment Matching</h3>
+          <p class="text-white/65 text-sm leading-relaxed">The AI Coach checks the gym's live equipment database — your plan only includes machines and stations that are actually available right now.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- TRAINING ENVIRONMENTS                                    -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section class="py-24 border-t border-white/5" data-reveal>
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="max-w-3xl mb-14">
+        <div class="eyebrow mb-4">Train Anywhere</div>
+        <h2 class="heading-lg">Wherever you train, Pulser.One trains with you.</h2>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div class="card">
+          <h3 class="font-bold mb-2">Gym</h3>
+          <p class="text-white/60 text-sm leading-relaxed mb-3">Barbells, cables, machines and cardio. Progressive overload tracked per exercise. Camera AI works from your propped phone at any angle.</p>
+          <div class="flex flex-wrap gap-1.5"><span class="text-[10px] px-2 py-0.5 rounded-full border border-white/10 text-white/60 uppercase tracking-wider">45+ exercises</span><span class="text-[10px] px-2 py-0.5 rounded-full border border-white/10 text-white/60 uppercase tracking-wider">Barbell</span><span class="text-[10px] px-2 py-0.5 rounded-full border border-white/10 text-white/60 uppercase tracking-wider">Cables</span></div>
+        </div>
+        <div class="card">
+          <h3 class="font-bold mb-2">Calisthenics</h3>
+          <p class="text-white/60 text-sm leading-relaxed mb-3">Bodyweight mastery — from beginner progressions to advanced skills. AI tracks joint alignment, tension and tempo on every rep.</p>
+          <div class="flex flex-wrap gap-1.5"><span class="text-[10px] px-2 py-0.5 rounded-full border border-white/10 text-white/60 uppercase tracking-wider">40+ exercises</span><span class="text-[10px] px-2 py-0.5 rounded-full border border-white/10 text-white/60 uppercase tracking-wider">Muscle-up</span><span class="text-[10px] px-2 py-0.5 rounded-full border border-white/10 text-white/60 uppercase tracking-wider">Planche</span></div>
+        </div>
+        <div class="card">
+          <h3 class="font-bold mb-2">Home</h3>
+          <p class="text-white/60 text-sm leading-relaxed mb-3">Bodyweight, resistance bands, dumbbells or zero equipment. Full programs built around exactly what you own.</p>
+          <div class="flex flex-wrap gap-1.5"><span class="text-[10px] px-2 py-0.5 rounded-full border border-white/10 text-white/60 uppercase tracking-wider">Bodyweight</span><span class="text-[10px] px-2 py-0.5 rounded-full border border-white/10 text-white/60 uppercase tracking-wider">Bands</span><span class="text-[10px] px-2 py-0.5 rounded-full border border-white/10 text-white/60 uppercase tracking-wider">Dumbbells</span></div>
+        </div>
+        <div class="card">
+          <h3 class="font-bold mb-2">Outdoor</h3>
+          <p class="text-white/60 text-sm leading-relaxed mb-3">Park bars, stairs, sprints and outdoor circuits. GPS and cardio data from wearables enriches every session.</p>
+          <div class="flex flex-wrap gap-1.5"><span class="text-[10px] px-2 py-0.5 rounded-full border border-white/10 text-white/60 uppercase tracking-wider">Park bars</span><span class="text-[10px] px-2 py-0.5 rounded-full border border-white/10 text-white/60 uppercase tracking-wider">Hill sprints</span><span class="text-[10px] px-2 py-0.5 rounded-full border border-white/10 text-white/60 uppercase tracking-wider">Intervals</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- HOW IT WORKS                                             -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section id="how-it-works" class="py-24 border-t border-white/5" data-reveal>
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <div class="eyebrow mb-4">How It Works</div>
+        <h2 class="heading-lg">From download to your first coached workout — <span class="gradient-red">under 5 minutes.</span></h2>
+      </div>
+      <div class="space-y-8">
+        <div class="flex gap-6 items-start">
+          <div class="step-num">1</div>
+          <div>
+            <h3 class="font-bold mb-1">Scan your body</h3>
+            <p class="text-white/60 leading-relaxed">Open the app, stand in front of your phone camera, rotate slowly. In 60 seconds the movement engine maps your frame, posture, and proportions.</p>
+          </div>
+        </div>
+        <div class="flex gap-6 items-start">
+          <div class="step-num">2</div>
+          <div>
+            <h3 class="font-bold mb-1">Get your personalised plan</h3>
+            <p class="text-white/60 leading-relaxed">The AI Coach builds a periodised programme based on your scan, goals, available equipment, and wearable data. No questionnaire — real data.</p>
+          </div>
+        </div>
+        <div class="flex gap-6 items-start">
+          <div class="step-num">3</div>
+          <div>
+            <h3 class="font-bold mb-1">Train with live feedback</h3>
+            <p class="text-white/60 leading-relaxed">Prop your phone, start a session. The movement engine tracks every rep — form score, tempo, range of motion, coaching cues in real time.</p>
+          </div>
+        </div>
+        <div class="flex gap-6 items-start">
+          <div class="step-num">4</div>
+          <div>
+            <h3 class="font-bold mb-1">Get smarter every session</h3>
+            <p class="text-white/60 leading-relaxed">Each workout feeds back into the engine. Your injury-risk score updates, your plan adapts, your progress compounds. The more you train, the better it coaches.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- PRICING                                                  -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section id="pricing" class="py-24 border-t border-white/5" data-reveal>
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <div class="eyebrow mb-4">Pricing</div>
+        <h2 class="heading-lg mb-4">Simple. Transparent. No surprises.</h2>
+        <p class="text-white/60 leading-relaxed">The free tier is genuinely useful — not a crippled trial.</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-5">
+        <div class="card">
+          <div class="text-xs uppercase tracking-widest text-white/40 font-semibold mb-3">Free</div>
+          <div class="flex items-baseline gap-2 mb-4">
+            <span class="text-5xl font-bold">€0</span>
+            <span class="text-white/60">/ forever</span>
+          </div>
+          <p class="text-white/60 text-sm mb-5 leading-relaxed">Everything you need to get started. No trial period, no credit card.</p>
+          <ul class="space-y-2 text-sm text-white/70">
+            <li class="flex gap-2"><span class="text-brand">✓</span> Live AI form tracking</li>
+            <li class="flex gap-2"><span class="text-brand">✓</span> Rep counting + feedback</li>
+            <li class="flex gap-2"><span class="text-brand">✓</span> Body scan (1×/week)</li>
+            <li class="flex gap-2"><span class="text-brand">✓</span> Wearable integration (read)</li>
+            <li class="flex gap-2"><span class="text-brand">✓</span> Progress history (30 days)</li>
+          </ul>
+          <a href="#waitlist" class="btn btn-outline w-full mt-6">Join Waitlist — Free</a>
+        </div>
+        <div class="card card-accent glow-red">
+          <div class="text-xs uppercase tracking-widest text-brand font-semibold mb-3">Premium · Most popular</div>
+          <div class="flex items-baseline gap-2 mb-4">
+            <span class="text-5xl font-bold" data-price="9.99">€9.99</span>
+            <span class="text-white/60">/ month</span>
+          </div>
+          <p class="text-white/70 text-sm mb-5 leading-relaxed">Billed monthly. Cancel anytime in 2 taps.</p>
+          <ul class="space-y-2 text-sm text-white/80">
+            <li class="flex gap-2"><span class="text-brand">✓</span> Everything in Free</li>
+            <li class="flex gap-2"><span class="text-brand">✓</span> Unlimited body scans</li>
+            <li class="flex gap-2"><span class="text-brand">✓</span> Full exercise library (120+)</li>
+            <li class="flex gap-2"><span class="text-brand">✓</span> Predictive injury detection</li>
+            <li class="flex gap-2"><span class="text-brand">✓</span> AI adaptive programming</li>
+            <li class="flex gap-2"><span class="text-brand">✓</span> Cross-gym access</li>
+            <li class="flex gap-2"><span class="text-brand">✓</span> AI nutrition plans</li>
+            <li class="flex gap-2"><span class="text-brand">✓</span> Equipment-aware workouts</li>
+          </ul>
+          <a href="#waitlist" class="btn btn-primary w-full mt-6">Join Waitlist — Premium</a>
+        </div>
+      </div>
+      <p class="text-center text-white/40 text-xs mt-6">Prices shown in local currency where available. VAT may apply.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- CROWDFUNDING                                             -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section id="crowdfunding" class="py-24 border-t border-white/5" data-reveal>
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <div class="eyebrow mb-5">Crowdfunding</div>
+      <h2 class="heading-lg mb-6">Help us build the AI coach <span class="gradient-red">everyone deserves.</span></h2>
+      <p class="text-white/60 text-lg leading-relaxed mb-8 max-w-2xl mx-auto">We're launching a crowdfunding campaign to accelerate development. Back us early and get lifetime benefits — premium access, founding member status, and a voice in what we build next.</p>
+      <div class="card card-accent max-w-lg mx-auto text-left">
+        <div class="text-xs uppercase tracking-widest text-brand font-semibold mb-4">Early Backer Benefits</div>
+        <ul class="space-y-3 text-sm text-white/80">
+          <li class="flex gap-2"><span class="text-brand">→</span> Lifetime Premium access at a fraction of the price</li>
+          <li class="flex gap-2"><span class="text-brand">→</span> Founding Member badge in the app</li>
+          <li class="flex gap-2"><span class="text-brand">→</span> Early access to beta before public launch</li>
+          <li class="flex gap-2"><span class="text-brand">→</span> Direct input on feature prioritisation</li>
+          <li class="flex gap-2"><span class="text-brand">→</span> Name in the app credits</li>
+        </ul>
+        <a href="#" class="btn btn-primary w-full mt-6">Campaign Coming Soon</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- FAQ                                                      -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section id="faq" class="py-24 border-t border-white/5" data-reveal>
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-14">
+        <div class="eyebrow mb-4">FAQ</div>
+        <h2 class="heading-lg">Questions we get asked.</h2>
+      </div>
+      <div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="this.classList.toggle('is-open');this.nextElementSibling.classList.toggle('is-open');">
+            Is Pulser.One really free?
+            <span class="faq-chevron">+</span>
+          </button>
+          <div class="faq-answer">
+            <p class="text-white/60 text-sm leading-relaxed">Yes. The free tier includes live AI form tracking, rep counting, weekly body scans, and 30-day history. No trial period, no credit card required. Premium unlocks unlimited scans, injury prediction, adaptive programming, and cross-gym access for €9.99/month.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="this.classList.toggle('is-open');this.nextElementSibling.classList.toggle('is-open');">
+            What makes this different from other fitness apps?
+            <span class="faq-chevron">+</span>
+          </button>
+          <div class="faq-answer">
+            <p class="text-white/60 text-sm leading-relaxed">Most fitness apps give you a static plan and a timer. Pulser.One actually sees how you move — using your phone camera and our proprietary movement engine. It scores your form, predicts injuries, and adapts your plan based on real biomechanical data. It's a coach, not a spreadsheet.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="this.classList.toggle('is-open');this.nextElementSibling.classList.toggle('is-open');">
+            Do I need special equipment or a wearable?
+            <span class="faq-chevron">+</span>
+          </button>
+          <div class="faq-answer">
+            <p class="text-white/60 text-sm leading-relaxed">No. All you need is your phone. The movement engine runs entirely on-device using your camera. Wearables (Apple Watch, Garmin, Whoop, Oura, Fitbit) are optional but enhance the experience — HRV, sleep, and recovery data feed into your injury-risk score and plan adjustments.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="this.classList.toggle('is-open');this.nextElementSibling.classList.toggle('is-open');">
+            What is cross-gym access?
+            <span class="faq-chevron">+</span>
+          </button>
+          <div class="faq-answer">
+            <p class="text-white/60 text-sm leading-relaxed">Premium members can check in at any gym in the Pulser network with their existing membership — no day passes, no extra apps. Your plan, history, and AI coach travel with you. The network is launching in the EU and expanding from there.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="this.classList.toggle('is-open');this.nextElementSibling.classList.toggle('is-open');">
+            Is my data safe?
+            <span class="faq-chevron">+</span>
+          </button>
+          <div class="faq-answer">
+            <p class="text-white/60 text-sm leading-relaxed">Pulser is built in the EU and designed to be EHDS-ready (European Health Data Space). Movement analysis runs on-device — your video never leaves your phone. Health data is stored with your consent and is fully portable under GDPR. You own your data, always.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-btn" onclick="this.classList.toggle('is-open');this.nextElementSibling.classList.toggle('is-open');">
+            When does the app launch?
+            <span class="faq-chevron">+</span>
+          </button>
+          <div class="faq-answer">
+            <p class="text-white/60 text-sm leading-relaxed">We're currently in development with a crowdfunding campaign coming soon. Join the waitlist to get early access to the beta and be the first to know when we go live. Backers get priority access.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- WAITLIST CTA                                             -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section id="waitlist" class="py-24 border-t border-white/5" data-reveal>
+    <div class="max-w-2xl mx-auto px-6 text-center">
+      <div class="eyebrow mb-5">Early Access</div>
+      <h2 class="heading-lg mb-4">Get in before everyone else.</h2>
+      <p class="text-white/60 text-lg mb-8 leading-relaxed">Join the waitlist for early access to Pulser.One. No spam, just launch updates and beta invites.</p>
+      <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto" onsubmit="event.preventDefault(); this.querySelector('button').textContent='You\'re in! 🎉'; this.querySelector('button').disabled=true; this.querySelector('button').style.opacity='0.6';">
+        <input type="email" placeholder="your@email.com" required class="email-input flex-1" />
+        <button type="submit" class="btn btn-primary shrink-0">Join Waitlist</button>
+      </form>
+      <p class="text-white/30 text-xs mt-4">Free forever tier guaranteed. Unsubscribe anytime.</p>
+    </div>
+  </section>
+</main>
+
+<!-- ═══════════════════════════════════════════════════════ -->
+<!-- FOOTER                                                     -->
+<!-- ═══════════════════════════════════════════════════════ -->
+<footer class="site-footer mt-10">
+  <div class="max-w-7xl mx-auto px-6 py-16 grid sm:grid-cols-2 md:grid-cols-4 gap-10">
+    <div>
+      <a href="https://pulser.fit" class="logo-mark mb-4" style="display:flex;">
+        <svg viewBox="0 0 100 100" fill="none" aria-hidden="true" style="width:1.8rem;height:1.8rem;">
+          <path d="M 50,8 A 42,42 0 1 1 8,50" stroke="#FF3B47" stroke-width="9" fill="none"/>
+          <path d="M 50,24 A 26,26 0 1 1 24,50" stroke="#FF3B47" stroke-width="9" fill="none"/>
+          <path d="M 36,50 A 14,14 0 0 1 64,50 Z" fill="#FF3B47"/>
+        </svg>
+        <span style="margin-left:0.5rem;">PULSER</span>
+      </a>
+      <p class="text-white/55 max-w-sm leading-relaxed text-sm mt-3">The DeepTech operating system for modern fitness. Gyms, members and coaches — in sync.</p>
+      <div class="mt-6 flex flex-wrap gap-2">
+        <span class="text-xs px-2.5 py-1 rounded-full border border-white/10 text-white/60">DeepTech</span>
+        <span class="text-xs px-2.5 py-1 rounded-full border border-white/10 text-white/60">EHDS-ready</span>
+        <span class="text-xs px-2.5 py-1 rounded-full border border-white/10 text-white/60">Built in the EU</span>
+      </div>
+    </div>
+    <div>
+      <div class="text-xs uppercase tracking-widest text-white/40 mb-4">Pulser.One</div>
+      <ul class="space-y-2 text-sm text-white/70">
+        <li><a href="#features" class="hover:text-white">Features</a></li>
+        <li><a href="#how-it-works" class="hover:text-white">How It Works</a></li>
+        <li><a href="#pricing" class="hover:text-white">Pricing</a></li>
+        <li><a href="#faq" class="hover:text-white">FAQ</a></li>
+        <li><a href="#waitlist" class="hover:text-white">Join Waitlist</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-xs uppercase tracking-widest text-white/40 mb-4">Platform</div>
+      <ul class="space-y-2 text-sm text-white/70">
+        <li><a href="https://pulser.fit/platform.html" class="hover:text-white">Overview</a></li>
+        <li><a href="https://pulser.fit/pulser-gym.html" class="hover:text-white">Pulser.Gym</a></li>
+        <li><a href="https://pulser.fit/pulser-coach.html" class="hover:text-white">Pulser.Coach</a></li>
+        <li><a href="https://pulser.fit/pricing.html" class="hover:text-white">Pricing</a></li>
+        <li><a href="https://pulser.fit/roadmap.html" class="hover:text-white">Roadmap</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="text-xs uppercase tracking-widest text-white/40 mb-4">Company</div>
+      <ul class="space-y-2 text-sm text-white/70">
+        <li><a href="https://pulser.fit/about.html" class="hover:text-white">About</a></li>
+        <li><a href="https://pulser.fit/investors.html" class="hover:text-white">Investors</a></li>
+        <li><a href="https://pulser.fit/contact.html" class="hover:text-white">Contact</a></li>
+        <li><a href="mailto:go@pulser.fit" class="hover:text-white">go@pulser.fit</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-white/5">
+    <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between gap-4 text-xs text-white/40">
+      <div>© 2026 Pulser. All rights reserved.</div>
+      <div class="flex gap-6">
+        <a href="https://pulser.fit/privacy.html" class="hover:text-white/70">Privacy</a>
+        <a href="https://pulser.fit/terms.html" class="hover:text-white/70">Terms</a>
+        <a href="#" class="hover:text-white/70">EHDS Compliance</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Mobile menu
+document.getElementById('menu-toggle').addEventListener('click', function() {
+  const menu = document.getElementById('mobile-menu');
+  menu.classList.toggle('is-open');
+  this.setAttribute('aria-expanded', menu.classList.contains('is-open'));
+});
+
+// Close mobile menu on link click
+document.querySelectorAll('#mobile-menu a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.remove('is-open');
+  });
+});
+
+// Intersection reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('is-visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+</body>
+</html>
