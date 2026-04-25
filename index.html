@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Pulser.One — AI Coach Built for You</title>
 <link rel="icon" href="https://pulser.fit/assets/favicon.svg" type="image/svg+xml">
-<meta name="description" content="Pulser.One is your free AI coach — body scan, live form feedback, injury-risk scoring, and personalised training plans. Powered by proprietary DeepTech, built in the EU." />
+<meta name="description" content="Pulser.One — free AI coach with training plans, nutrition, recovery intelligence, live form feedback, and injury prevention. Powered by proprietary DeepTech, built in the EU." />
 <meta property="og:title" content="Pulser.One — AI Coach Built for You" />
-<meta property="og:description" content="Free AI coach with body scan, live form feedback, injury-risk scoring, and personalised training. Powered by proprietary DeepTech." />
+<meta property="og:description" content="Free AI coach — training, nutrition, recovery, live form feedback, and injury prevention. Powered by proprietary DeepTech." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://one.pulser.fit" />
 <meta property="og:image" content="https://pulser.fit/assets/og-image.png" />
@@ -16,7 +16,7 @@
 <meta property="og:locale" content="en_US" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Pulser.One — AI Coach Built for You" />
-<meta name="twitter:description" content="Free AI coach with body scan, live form feedback, injury-risk scoring, and personalised training. Powered by proprietary DeepTech." />
+<meta name="twitter:description" content="Free AI coach — training, nutrition, recovery, live form feedback, and injury prevention. Powered by proprietary DeepTech." />
 <meta name="twitter:image" content="https://pulser.fit/assets/og-image.png" />
 <meta name="theme-color" content="#FF3B47" />
 <link rel="canonical" href="https://one.pulser.fit" />
@@ -109,6 +109,32 @@
   /* Step number */
   .step-num { width: 3rem; height: 3rem; border-radius: 50%; background: rgba(255,59,71,0.12); border: 1px solid rgba(255,59,71,0.25); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.1rem; color: var(--accent); flex-shrink: 0; }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Pulser.One",
+  "applicationCategory": "HealthApplication",
+  "operatingSystem": "iOS, Android",
+  "description": "AI-powered personal coaching — body scan, form feedback, personalised training, AI nutrition, recovery intelligence, and cross-gym access. Free forever, premium at \u20ac9.99/mo.",
+  "url": "https://one.pulser.fit",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Free",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    {
+      "@type": "Offer",
+      "name": "Premium",
+      "price": "9.99",
+      "priceCurrency": "EUR",
+      "billingIncrement": "P1M"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <div class="bg-aura"></div>
@@ -161,7 +187,7 @@
       <div>
         <div class="eyebrow mb-5">Pulser.One · AI Coach</div>
         <h1 class="heading-xl mb-6">Your gym. Your coach. <span class="gradient-red">Your body.</span> One app.</h1>
-        <p class="text-lg md:text-xl text-white/65 mb-8 leading-relaxed">Free AI coach with body scan, live form feedback, injury-risk scoring, and personalised training plans — powered by our proprietary DeepTech movement engine. Not a wrapper. Not a chatbot. Real biomechanics, running on your phone.</p>
+        <p class="text-lg md:text-xl text-white/65 mb-8 leading-relaxed">Free AI coach with body scan, live form feedback, injury-risk scoring, personalised training plans, AI nutrition, and recovery intelligence — powered by our proprietary DeepTech movement engine. Not a wrapper. Not a chatbot. Real biomechanics, running on your phone.</p>
         <div class="flex flex-wrap gap-3 mb-8">
           <a href="#waitlist" class="btn btn-primary btn-lg">Join the Waitlist</a>
           <a href="#crowdfunding" class="btn btn-outline btn-lg">Back Us</a>
@@ -175,7 +201,7 @@
       </div>
 
       <!-- Phone mockup -->
-      <div class="mx-auto" style="max-width:340px;">
+      <div class="mx-auto" style="max-width:340px;" aria-hidden="true">
         <div style="background:#000;border-radius:38px;padding:10px;border:1px solid rgba(255,255,255,0.08);box-shadow:0 40px 100px -20px rgba(255,59,71,0.25), 0 0 0 1px rgba(255,59,71,0.15);">
           <div style="background:linear-gradient(160deg,#0a0a1a 0%,#06121a 55%,#0a0a0a 100%);border-radius:30px;overflow:hidden;position:relative;aspect-ratio:9/19;">
             <div style="position:absolute;top:10px;left:50%;transform:translateX(-50%);width:90px;height:24px;background:#000;border-radius:14px;z-index:2;"></div>
@@ -334,6 +360,31 @@
           <h3 class="font-bold mb-2">Smart Equipment Matching</h3>
           <p class="text-white/65 text-sm leading-relaxed">The AI Coach checks the gym's live equipment database — your plan only includes machines and stations that are actually available right now.</p>
         </div>
+        <div class="card">
+          <div class="text-xs uppercase tracking-widest text-brand font-semibold mb-2">Nutrition · AI-Generated</div>
+          <h3 class="font-bold mb-2">AI Nutrition Plans</h3>
+          <p class="text-white/65 text-sm leading-relaxed">Meal plans built from your body scan, goals, and training load. Macros and calorie targets auto-adjust on rest days vs. heavy sessions — no manual calorie counting.</p>
+        </div>
+        <div class="card">
+          <div class="text-xs uppercase tracking-widest text-brand font-semibold mb-2">HRV · Sleep · Load</div>
+          <h3 class="font-bold mb-2">Recovery Intelligence</h3>
+          <p class="text-white/65 text-sm leading-relaxed">Sleep quality, HRV trends, and cumulative training load in a single recovery score. The AI auto-adjusts session intensity or prescribes a deload before burnout hits.</p>
+        </div>
+        <div class="card">
+          <div class="text-xs uppercase tracking-widest text-brand font-semibold mb-2">Targets · Milestones</div>
+          <h3 class="font-bold mb-2">Goal Engine</h3>
+          <p class="text-white/65 text-sm leading-relaxed">Set a target — lose 5 kg, squat 100 kg, run a sub-25 min 5K. The AI builds backwards from your deadline and adjusts training + nutrition weekly based on real progress.</p>
+        </div>
+        <div class="card">
+          <div class="text-xs uppercase tracking-widest text-brand font-semibold mb-2">Community · Compete</div>
+          <h3 class="font-bold mb-2">Challenges &amp; Social</h3>
+          <p class="text-white/65 text-sm leading-relaxed">Weekly challenges, gym leaderboards, shared milestones. Train solo, compete with friends, or join community events — all inside the app.</p>
+        </div>
+        <div class="card">
+          <div class="text-xs uppercase tracking-widest text-brand font-semibold mb-2">120+ Exercises · Video</div>
+          <h3 class="font-bold mb-2">Exercise Library</h3>
+          <p class="text-white/65 text-sm leading-relaxed">Every exercise with video demos, coaching cues, and muscle maps. Tap any movement in your plan to see exactly how it's done and what the AI scores you on.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -456,6 +507,9 @@
             <li class="flex gap-2"><span class="text-brand">✓</span> AI adaptive programming</li>
             <li class="flex gap-2"><span class="text-brand">✓</span> Cross-gym access</li>
             <li class="flex gap-2"><span class="text-brand">✓</span> AI nutrition plans</li>
+            <li class="flex gap-2"><span class="text-brand">✓</span> Recovery intelligence</li>
+            <li class="flex gap-2"><span class="text-brand">✓</span> Goal engine</li>
+            <li class="flex gap-2"><span class="text-brand">✓</span> Challenges &amp; social</li>
             <li class="flex gap-2"><span class="text-brand">✓</span> Equipment-aware workouts</li>
           </ul>
           <a href="#waitlist" class="btn btn-primary w-full mt-6">Join Waitlist — Premium</a>
@@ -629,7 +683,6 @@
       <div class="flex gap-6">
         <a href="https://pulser.fit/privacy.html" class="hover:text-white/70">Privacy</a>
         <a href="https://pulser.fit/terms.html" class="hover:text-white/70">Terms</a>
-        <a href="#" class="hover:text-white/70">EHDS Compliance</a>
       </div>
     </div>
   </div>
